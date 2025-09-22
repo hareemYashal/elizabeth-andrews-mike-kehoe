@@ -1,153 +1,152 @@
-# Document Parser
+# Elizabeth Andrews Mike Kehoe - Bank Statement Parser
 
-A Python application for parsing bank statements and financial documents using LlamaParse and Google's Gemini AI.
+A sophisticated Python application that parses bank statements and extracts financial data with intelligent Brand column logic for credit card processing fees.
 
 ## Features
 
-- Parse PDF bank statements using LlamaParse
-- Extract structured data from markdown tables
-- Use Google Gemini AI for intelligent data extraction and processing
-- Export results to Excel format
-- Support for various financial document types (fees, interchange charges, card type summaries)
+- **PDF Parsing**: Uses Llama Cloud API to parse bank statement PDFs
+- **AI-Powered Extraction**: Leverages Google Gemini AI for intelligent data extraction
+- **Smart Brand Logic**: Automatically populates Brand column based on description patterns
+- **Excel Export**: Generates structured Excel files with extracted data
+- **Comprehensive Data Processing**: Handles fees, interchange charges, and transaction summaries
 
-## Approach & Methodology
+## Brand Column Logic
 
-### 1. Document Processing Pipeline
+The parser implements intelligent Brand column population based on the following rules:
 
-Our document parser follows a sophisticated multi-stage approach:
+### For Interchange Charges
+- Populates Brand column as usual (maintains existing logic)
 
-1. **PDF to Markdown Conversion**: Uses LlamaParse to convert PDF bank statements into structured markdown format
-2. **Section Identification**: Automatically identifies and extracts different sections (Fees, Interchange Charges, Summary by Card Type, etc.)
-3. **AI-Powered Extraction**: Leverages Google Gemini AI for intelligent data extraction and normalization
-4. **Data Enrichment**: Cross-references and enriches data between different sections
-5. **Output Generation**: Exports clean, structured data to Excel format
+### For Fees/Service Charges
+- **MC** prefix → MASTERCARD
+- **VI** prefix → VISA
+- **DC** prefix → DISCOVER
+- **AMEX/AMERICAN EXPRESS** prefix → American Express
+- **DEBIT** prefix → DEBIT
+- **No matching prefix** → Leave Brand column blank
 
-### 2. AI Processing Strategy
+## Prerequisites
 
-**Single LLM Instance**: We use one global Google Gemini AI instance across all functions for:
-- Consistency in processing
-- Better performance (no repeated initialization)
-- Easier maintenance and configuration
+- Python 3.8 or higher
+- Llama Cloud API key
+- Google API key (for Gemini AI)
 
-**Multi-Function AI Usage**:
-- `extract_account_info_from_header()`: Extracts merchant name, account holder, and statement period
-- `process_section_with_llm()`: Processes individual sections (Fees, Interchange, Summary)
-- `extract_rows_with_llm_from_sections()`: Extracts structured data from markdown tables
-- `post_process_rows_with_llm()`: Normalizes and cleans extracted data
+## Installation
 
-### 3. Data Extraction Techniques
+1. Clone the repository:
+```bash
+git clone https://github.com/hareemYashal/elizabeth-andrews-mike-kehoe.git
+cd elizabeth-andrews-mike-kehoe
+```
 
-**Section-Based Processing**:
-- **FEES Section**: Extracts fee descriptions, amounts, and types
-- **INTERCHANGE Section**: Processes interchange charges with rates and transaction counts
-- **SUMMARY BY CARD TYPE**: Creates gross sales and refunds entries for each card type
-
-**Smart Data Enrichment**:
-- Matches descriptions between sections using fuzzy matching
-- Enriches fee rows with interchange data (rates, counts, amounts)
-- Applies intelligent brand inference (VISA, Mastercard, Discover, American Express)
-
-**Data Normalization**:
-- Cleans descriptions by removing embedded rates and amounts
-- Standardizes fee types (Fees vs Interchange Charges)
-- Applies consistent formatting and sign conventions
-
-### 4. Error Handling & Validation
-
-- **API Key Validation**: Ensures all required API keys are present before processing
-- **Data Validation**: Validates extracted data before export
-- **Graceful Degradation**: Continues processing even if some sections fail
-- **Comprehensive Logging**: Detailed progress tracking and error reporting
-
-### 5. Output Structure
-
-The parser generates Excel files with a standardized 18-column schema:
-- Account information (Name, ID, Holder, Date)
-- Transaction details (Description, Brand, Count, Amount)
-- Financial data (Rates, Fees, Fee Type)
-- Metadata (Filename, Processor, Gateway, etc.)
-
-## Setup
-
-### Prerequisites
-
-- Python 3.8+
-- Required packages (see requirements.txt)
-
-### Installation
-
-1. Clone or download this repository
 2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 
 3. Set up environment variables:
-   - Create a `.env` file in the project root
-   - Add your API keys:
-     ```
-     LLAMA_CLOUD_API_KEY=your_llama_cloud_api_key_here
-     GOOGLE_API_KEY=your_google_api_key_here
-     ```
-
-### API Keys
-
-You'll need the following API keys:
-
-1. **Llama Cloud API Key**: Get it from [LlamaIndex Cloud](https://cloud.llamaindex.ai/)
-2. **Google API Key**: Get it from [Google AI Studio](https://aistudio.google.com/)
+Create a `.env` file in the root directory:
+```env
+LLAMA_CLOUD_API_KEY=your_llama_cloud_api_key_here
+GOOGLE_API_KEY=your_google_api_key_here
+```
 
 ## Usage
 
-1. Place your PDF files in the `input_pdfs/` directory
-2. Run the parser:
-   ```bash
-   python parser.py
-   ```
-3. Find the processed Excel files in the `output_excels/` directory
+1. Place your bank statement PDF in the `input_pdfs` folder
+2. Rename it to `ALPH072025.pdf` (or update the filename in `parser.py`)
+3. Run the parser:
+```bash
+python parser.py
+```
+
+4. The processed data will be saved to `output_excels/ALPH072025_tables.xlsx`
+
+## API Keys Setup
+
+### Llama Cloud API
+1. Visit [Llama Cloud](https://cloud.llamaindex.ai/)
+2. Sign up/Login to your account
+3. Get your API key from the dashboard
+4. Add it to your `.env` file
+
+### Google API Key
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing
+3. Enable the Generative AI API
+4. Create credentials (API key)
+5. Add it to your `.env` file
 
 ## Project Structure
 
 ```
-document_parser/
-├── input_pdfs/          # Place your PDF files here
-├── output_excels/       # Processed Excel files will be saved here
-├── parser.py            # Main parsing script
-├── requirements.txt     # Python dependencies
-├── .env                 # Environment variables (API keys)
-└── README.md           # This file
+elizabeth-andrews-mike-kehoe/
+├── input_pdfs/           # Place your PDF files here
+├── output_excels/        # Generated Excel files
+├── parser.py             # Main parser script
+├── requirements.txt      # Python dependencies
+├── .env                  # Environment variables (create this)
+├── .gitignore           # Git ignore file
+└── README.md            # This file
 ```
 
-## Configuration
+## Output Format
 
-The script uses a single global LLM instance for all AI processing, making it more efficient and consistent. You can modify the LLM settings in the `parser.py` file:
+The parser generates Excel files with the following columns:
+- Account Name
+- Account ID
+- Statement Description
+- Brand (populated based on logic)
+- Count #
+- Amount $
+- Rate %
+- Rate $
+- Fees $
+- Fee Type
+- Date
+- Account Holder
+- Account Short ID
+- Gateway
+- Account Type
+- Filename
+- Processor
+- User Permissions
 
-```python
-# Initialize LLM once for reuse across all functions
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-pro",
-    temperature=0,
-    max_tokens=None,
-    timeout=None,
-    max_retries=2,
-)
-```
+## Error Handling
 
-## Features
+The parser includes comprehensive error handling for:
+- Missing API keys
+- Invalid PDF files
+- Network connectivity issues
+- Data extraction failures
 
-- **Environment Variable Support**: All API keys are loaded from `.env` file for security
-- **Single LLM Instance**: Efficient reuse of the same LLM instance across all functions
-- **Comprehensive Data Extraction**: Handles fees, interchange charges, card type summaries, and more
-- **Excel Export**: Clean, structured output in Excel format
-- **Error Handling**: Robust error handling and validation
+## Contributing
 
-## Troubleshooting
-
-- Make sure your `.env` file is in the project root and contains valid API keys
-- Ensure all dependencies are installed: `pip install -r requirements.txt`
-- Check that your PDF files are in the `input_pdfs/` directory
-- Verify your API keys have the necessary permissions
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## License
 
-This project is for educational and personal use.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For issues and questions:
+- Create an issue in the GitHub repository
+- Contact: [Your contact information]
+
+## Changelog
+
+### Version 1.1.0
+- Added intelligent Brand column logic
+- Improved error handling
+- Enhanced documentation
+- Added comprehensive logging
+
+### Version 1.0.0
+- Initial release
+- Basic PDF parsing functionality
+- Excel export capability

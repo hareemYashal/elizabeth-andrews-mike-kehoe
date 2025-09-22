@@ -14,11 +14,32 @@ load_dotenv()
 llama_api_key = os.getenv("LLAMA_CLOUD_API_KEY")
 google_api_key = os.getenv("GOOGLE_API_KEY")
 
+# If not found in environment, try reading from .env file directly
+if not llama_api_key or not google_api_key:
+    print("🔍 API keys not found in environment, reading from .env file directly...")
+    try:
+        with open('.env', 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            print(f"📄 Read {len(lines)} lines from .env file")
+            for i, line in enumerate(lines):
+                line = line.strip()
+                print(f"Line {i+1}: '{line}'")
+                if 'LLAMA_CLOUD_API_KEY=' in line:
+                    llama_api_key = line.split('=', 1)[1]
+                    print(f"✅ Found LLAMA_CLOUD_API_KEY: {llama_api_key[:20]}...")
+                elif 'GOOGLE_API_KEY=' in line:
+                    google_api_key = line.split('=', 1)[1]
+                    print(f"✅ Found GOOGLE_API_KEY: {google_api_key[:20]}...")
+    except Exception as e:
+        print(f"❌ Error reading .env file: {e}")
+
 # Validate that API keys are present
 if not llama_api_key:
     raise ValueError("LLAMA_CLOUD_API_KEY not found in environment variables. Please check your .env file.")
 if not google_api_key:
     raise ValueError("GOOGLE_API_KEY not found in environment variables. Please check your .env file.")
+
+print(f"✅ API keys loaded successfully!")
 
 # Set environment variables for the libraries
 os.environ["LLAMA_CLOUD_API_KEY"] = llama_api_key
@@ -1220,6 +1241,54 @@ for r in all_rows:
 # Final output: FEES rows + SUMMARY_CARD rows (exclude INTERCHANGE rows as they're only used for enrichment)
 rows = fees_rows + summary_card_rows
 print(f"   ✅ Final row count (FEES + SUMMARY_CARD): {len(rows)}")
+
+# Apply Brand column logic based on requirements:
+# 1. For Interchange charges → populate Brand as usual (already done)
+# 2. For Fees/Service charges → populate Brand based on description patterns
+print("🔄 Applying Brand column logic...")
+
+def infer_brand_from_description(description):
+    """Infer brand from description based on prefixes"""
+    if not description:
+        return ""
+    
+    desc_upper = description.upper().strip()
+    
+    # Check for prefixes
+    if desc_upper.startswith("MC ") or "MC " in desc_upper:
+        return "MASTERCARD"
+    elif desc_upper.startswith("VI ") or "VI " in desc_upper:
+        return "VISA"
+    elif desc_upper.startswith("DC ") or "DC " in desc_upper:
+        return "DISCOVER"
+    elif desc_upper.startswith("AMEX ") or "AMEX " in desc_upper or desc_upper.startswith("AMERICAN EXPRESS"):
+        return "American Express"
+    elif desc_upper.startswith("DEBIT ") or "DEBIT " in desc_upper:
+        return "DEBIT"
+    else:
+        return ""
+
+for row in rows:
+    fee_type = str(row.get('Fee Type', '')).strip()
+    description = str(row.get('Statement Description', '')).strip()
+    current_brand = str(row.get('Brand', '')).strip()
+    
+    if fee_type == "Interchange charges":
+        # Action Item 1: For Interchange charges → populate Brand as usual (already done)
+        print(f"   ✅ Interchange charges - keeping Brand as: '{current_brand}'")
+        
+    elif fee_type in ["Fees", "Service charges"]:
+        # Action Item 2: For Fees/Service charges → populate Brand based on description
+        inferred_brand = infer_brand_from_description(description)
+        
+        if inferred_brand:
+            row['Brand'] = inferred_brand
+            print(f"   🔄 Fees/Service charges - setting Brand to '{inferred_brand}' based on description: '{description[:30]}...'")
+        else:
+            row['Brand'] = ""  # Leave blank if no matching prefix
+            print(f"   🧹 Fees/Service charges - leaving Brand blank (no matching prefix): '{description[:30]}...'")
+    else:
+        print(f"   ✅ Other fee type - keeping Brand as: '{current_brand}'")
 
 output_excel = os.path.join("output_excels", f"{os.path.splitext(os.path.basename(file_name))[0]}_tables.xlsx")
 save_extracted_data_to_excel(rows, output_excel)
