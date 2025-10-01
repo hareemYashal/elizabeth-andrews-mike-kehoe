@@ -1,0 +1,625 @@
+{
+  "pdf_name": "ALPH072025.pdf",
+  "extraction_method": "hybrid",
+  "structured_data": {
+    "fees": [
+      {
+        "page": 5,
+        "headers": [
+          "Column_1",
+          "Column_2",
+          "Column_3",
+          "Column_4"
+        ],
+        "rows": [
+          {
+            "Column_1": "VI-COMMERCIAL SOLUTIONS FEE",
+            "Column_2": ".000100",
+            "Column_3": "TIMES",
+            "Column_4": "$107,447.12"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "FEES",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 6,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "-$383.71"
+          }
+        ],
+        "header_hint": "Total Service Charges",
+        "classified_as": "FEES",
+        "header_hint_used": "TOTAL SERVICE CHARGES"
+      },
+      {
+        "page": 6,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "-$366.15"
+          }
+        ],
+        "header_hint": "Total Fees",
+        "classified_as": "FEES",
+        "header_hint_used": "TOTAL FEES"
+      }
+    ],
+    "interchange": [
+      {
+        "page": 5,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "-$5,051.66"
+          }
+        ],
+        "header_hint": "Total Interchange Charges/Program Fees",
+        "classified_as": "INTERCHANGE",
+        "header_hint_used": "TOTAL INTERCHANGE CHARGES/PROGRAM FEES"
+      },
+      {
+        "page": 6,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "-$5,801.52"
+          },
+          {
+            "Column_1": "INTERCHANGE CHARGES/PROGRAM FEESThese are the variable fees charged by Card Organizations for processing transactions. The Interchange /"
+          }
+        ],
+        "header_hint": "Total (Service Charges, Interchange Charges/Program Fees, and Fees)",
+        "classified_as": "INTERCHANGE",
+        "header_hint_used": "TOTAL (SERVICE CHARGES, INTERCHANGE CHARGES/PROGRAM FEES, AND FEES)"
+      }
+    ],
+    "summary_by_card": [
+      {
+        "page": 2,
+        "headers": [
+          "Card Type",
+          "Average Ticket",
+          "Gross Sales Items",
+          "Gross Sales Amount",
+          "Refunds Items",
+          "Refunds Amount",
+          "Total Items",
+          "Total Amount"
+        ],
+        "rows": [
+          {
+            "Card Type": "Mastercard",
+            "Average Ticket": "$292.41",
+            "Gross Sales Items": "252",
+            "Gross Sales Amount": "$80,502.99",
+            "Refunds Items": "16",
+            "Refunds Amount": "-$2,138.40",
+            "Total Items": "268",
+            "Total Amount": "$78,364.59"
+          },
+          {
+            "Card Type": "VISA",
+            "Average Ticket": "$288.20",
+            "Gross Sales Items": "601",
+            "Gross Sales Amount": "$195,154.15",
+            "Refunds Items": "43",
+            "Refunds Amount": "-$9,553.50",
+            "Total Items": "644",
+            "Total Amount": "$185,600.65"
+          },
+          {
+            "Card Type": "Discover",
+            "Average Ticket": "$317.23",
+            "Gross Sales Items": "14",
+            "Gross Sales Amount": "$4,824.22",
+            "Refunds Items": "1",
+            "Refunds Amount": "-$65.84",
+            "Total Items": "15",
+            "Total Amount": "$4,758.38"
+          },
+          {
+            "Card Type": "American Express",
+            "Average Ticket": "$498.78",
+            "Gross Sales Items": "227",
+            "Gross Sales Amount": "$128,326.14",
+            "Refunds Items": "19",
+            "Refunds Amount": "-$5,625.17",
+            "Total Items": "246",
+            "Total Amount": "$122,700.97"
+          },
+          {
+            "Card Type": "Debit/Atm",
+            "Average Ticket": "$915.04",
+            "Gross Sales Items": "5",
+            "Gross Sales Amount": "$4,575.19",
+            "Refunds Items": "0",
+            "Refunds Amount": "0.00",
+            "Total Items": "5",
+            "Total Amount": "$4,575.19"
+          },
+          {
+            "Card Type": "Total",
+            "Average Ticket": "1,099",
+            "Gross Sales Items": "$413,382.69",
+            "Gross Sales Amount": "79",
+            "Refunds Items": "-$17,382.91",
+            "Refunds Amount": "1,178",
+            "Total Items": "$395,999.78",
+            "Total Amount": "SUMMARY BY BATCH"
+          }
+        ],
+        "header_hint": "Summary by Card Type",
+        "classified_as": "SUMMARY_CARD",
+        "header_hint_used": "SUMMARY BY CARD TYPE"
+      }
+    ],
+    "other": [
+      {
+        "page": 1,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "$395,999.78"
+          },
+          {
+            "Column_1": "-$122,700.97"
+          }
+        ],
+        "header_hint": "Total Amount Submitted",
+        "classified_as": "OTHER",
+        "header_hint_used": "TOTAL AMOUNT SUBMITTED"
+      },
+      {
+        "page": 1,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "-$14.52"
+          }
+        ],
+        "header_hint": "Chargebacks/Reversals",
+        "classified_as": "OTHER",
+        "header_hint_used": "CHARGEBACKS/REVERSALS"
+      },
+      {
+        "page": 1,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "$267,482.77"
+          }
+        ],
+        "header_hint": "Total Amount Processed",
+        "classified_as": "OTHER",
+        "header_hint_used": "TOTAL AMOUNT PROCESSED"
+      },
+      {
+        "page": 1,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "07/01/25"
+          },
+          {
+            "Column_1": "$14,731.33"
+          },
+          {
+            "Column_1": "-$1,347.14"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 1,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "-$5,801.52"
+          },
+          {
+            "Column_1": "-$5,801.52"
+          },
+          {
+            "Column_1": "$395,999.78"
+          },
+          {
+            "Column_1": "-$122,700.97"
+          }
+        ],
+        "header_hint": "Month End Charge",
+        "classified_as": "OTHER",
+        "header_hint_used": "MONTH END CHARGE"
+      },
+      {
+        "page": 2,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "$292.41"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 2,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "012036240053"
+          },
+          {
+            "Column_1": "07/01/25"
+          },
+          {
+            "Column_1": "$300.06"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 2,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "07/01/25"
+          },
+          {
+            "Column_1": "-$1,347.14"
+          },
+          {
+            "Column_1": "07/02/25"
+          },
+          {
+            "Column_1": "-$979.47"
+          },
+          {
+            "Column_1": "07/03/25"
+          },
+          {
+            "Column_1": "-$5,820.14"
+          },
+          {
+            "Column_1": "07/07/25"
+          },
+          {
+            "Column_1": "-$444.61"
+          },
+          {
+            "Column_1": "07/08/25"
+          },
+          {
+            "Column_1": "-$8,355.64"
+          },
+          {
+            "Column_1": "07/09/25"
+          },
+          {
+            "Column_1": "-$2,443.74"
+          },
+          {
+            "Column_1": "07/10/25"
+          },
+          {
+            "Column_1": "-$20,428.60"
+          },
+          {
+            "Column_1": "07/11/25"
+          },
+          {
+            "Column_1": "-$3,984.04"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 3,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "07/12/25"
+          },
+          {
+            "Column_1": "-$844.82"
+          },
+          {
+            "Column_1": "07/14/25"
+          },
+          {
+            "Column_1": "-$3,545.46"
+          },
+          {
+            "Column_1": "07/15/25"
+          },
+          {
+            "Column_1": "-$5,568.03"
+          },
+          {
+            "Column_1": "07/16/25"
+          },
+          {
+            "Column_1": "-$4,607.06"
+          },
+          {
+            "Column_1": "07/17/25"
+          },
+          {
+            "Column_1": "-$6,559.37"
+          },
+          {
+            "Column_1": "07/18/25"
+          },
+          {
+            "Column_1": "-$10,837.99"
+          },
+          {
+            "Column_1": "07/21/25"
+          },
+          {
+            "Column_1": "-$10,595.69"
+          },
+          {
+            "Column_1": "07/22/25"
+          },
+          {
+            "Column_1": "-$3,806.29"
+          },
+          {
+            "Column_1": "07/23/25"
+          },
+          {
+            "Column_1": "-$469.81"
+          },
+          {
+            "Column_1": "07/24/25"
+          },
+          {
+            "Column_1": "-$1,574.02"
+          },
+          {
+            "Column_1": "07/25/25"
+          },
+          {
+            "Column_1": "-$14,497.71"
+          },
+          {
+            "Column_1": "07/28/25"
+          },
+          {
+            "Column_1": "-$1,537.79"
+          },
+          {
+            "Column_1": "07/29/25"
+          },
+          {
+            "Column_1": "-$2,392.52"
+          },
+          {
+            "Column_1": "07/30/25"
+          },
+          {
+            "Column_1": "-$7,884.35"
+          },
+          {
+            "Column_1": "07/31/25"
+          },
+          {
+            "Column_1": "-$4,176.68"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 3,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "(Last 4 Digits)"
+          }
+        ],
+        "header_hint": "Description",
+        "classified_as": "OTHER",
+        "header_hint_used": "DESCRIPTION"
+      },
+      {
+        "page": 3,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "The amounts credited to, or deducted from, your account to resolve processing and billing discrepancies."
+          }
+        ],
+        "header_hint": "No Chargebacks/Reversals for this Statement Period",
+        "classified_as": "OTHER",
+        "header_hint_used": "NO CHARGEBACKS/REVERSALS FOR THIS STATEMENT PERIOD"
+      },
+      {
+        "page": 3,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "07/03/25"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 3,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "services."
+          }
+        ],
+        "header_hint": "Amount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT CHARGED TO AUTHORIZE, PROCESS AND SETTLE CARD TRANSACTIONS, ALONG WITH TRANSACTION-BASED AND/"
+      },
+      {
+        "page": 3,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "$36.36"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 4,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "services."
+          }
+        ],
+        "header_hint": "Amount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT CHARGED TO AUTHORIZE, PROCESS AND SETTLE CARD TRANSACTIONS, ALONG WITH TRANSACTION-BASED AND/"
+      },
+      {
+        "page": 5,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "services."
+          }
+        ],
+        "header_hint": "Amount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT CHARGED TO AUTHORIZE, PROCESS AND SETTLE CARD TRANSACTIONS, ALONG WITH TRANSACTION-BASED AND/"
+      },
+      {
+        "page": 5,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "-$0.79"
+          }
+        ],
+        "header_hint": "Amount",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT"
+      },
+      {
+        "page": 6,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "services."
+          }
+        ],
+        "header_hint": "Amount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing",
+        "classified_as": "OTHER",
+        "header_hint_used": "AMOUNT CHARGED TO AUTHORIZE, PROCESS AND SETTLE CARD TRANSACTIONS, ALONG WITH TRANSACTION-BASED AND/"
+      },
+      {
+        "page": 6,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "$13.21"
+          }
+        ],
+        "header_hint": "Charges",
+        "classified_as": "OTHER",
+        "header_hint_used": "CHARGES"
+      },
+      {
+        "page": 7,
+        "headers": [
+          "Column_1"
+        ],
+        "rows": [
+          {
+            "Column_1": "$4,216.03"
+          }
+        ],
+        "header_hint": "Charges",
+        "classified_as": "OTHER",
+        "header_hint_used": "CHARGES"
+      }
+    ]
+  },
+  "rich_context": {
+    "markdown": "EPICOR\nPayment Exchange\n4120 Dublin Blvd, Dublin, CA 94568\n\nYOUR CARD PROCESSING STATEMENT\n\nJOHNSTONE SUPPLY-GA_ALPH    STORE# 5     Page 1 of 7          THIS IS NOT A BILL\nDON LIVINGSTON                           Statement Period     07/01/25 - 07/31/25\n1870MCFARLAND PKWSTE250                  Merchant Number      191027606885\nALPHARETTA GA 30005                      Customer Service     Website -\n                                                              Phone - 1-800-853-1499\n\nSUMMARY             An overview of account activity for the statement period.\n\n| Page                   |                          |   |              |\n| ---------------------- | ------------------------ | - | ------------ |\n| 1                      | Total Amount Submitted   |   | $395,999.78  |\n| 2                      | Third Party Transactions |   | -$122,700.97 |\n| 3                      | Chargebacks/Reversals    |   | 0.00         |\n| 3                      | Adjustments              |   | -$14.52      |\n| 3                      | Fees                     |   | -$5,801.52   |\n| Total Amount Processed |                          |   | $267,482.77  |\n\n\nSUMMARY BY DAY\n\n| Date Submitted   | Submitted Amount | Third Party Transactions | Chargebacks/ Reversals | Adjustments | Fees       | Amount Processed |\n| ---------------- | ---------------- | ------------------------ | ---------------------- | ----------- | ---------- | ---------------- |\n| 07/01/25         | $14,731.33       | -$1,347.14               | 0.00                   | 0.00        | 0.00       | $13,384.19       |\n| 07/02/25         | $5,280.26        | -$979.47                 | 0.00                   | 0.00        | 0.00       | $4,300.79        |\n| 07/03/25         | $16,687.82       | -$5,820.14               | 0.00                   | -$14.52     | 0.00       | $10,853.16       |\n| 07/07/25         | $16,380.07       | -$444.61                 | 0.00                   | 0.00        | 0.00       | $15,935.46       |\n| 07/08/25         | $28,587.12       | -$8,355.64               | 0.00                   | 0.00        | 0.00       | $20,231.48       |\n| 07/09/25         | $10,205.43       | -$2,443.74               | 0.00                   | 0.00        | 0.00       | $7,761.69        |\n| 07/10/25         | $32,275.19       | -$20,428.60              | 0.00                   | 0.00        | 0.00       | $11,846.59       |\n| 07/11/25         | $10,730.43       | -$3,984.04               | 0.00                   | 0.00        | 0.00       | $6,746.39        |\n| 07/12/25         | $844.82          | -$844.82                 | 0.00                   | 0.00        | 0.00       | 0.00             |\n| 07/14/25         | $24,013.00       | -$3,545.46               | 0.00                   | 0.00        | 0.00       | $20,467.54       |\n| 07/15/25         | $22,300.87       | -$5,568.03               | 0.00                   | 0.00        | 0.00       | $16,732.84       |\n| 07/16/25         | $27,388.49       | -$4,607.06               | 0.00                   | 0.00        | 0.00       | $22,781.43       |\n| 07/17/25         | $20,757.79       | -$6,559.37               | 0.00                   | 0.00        | 0.00       | $14,198.42       |\n| 07/18/25         | $21,536.55       | -$10,837.99              | 0.00                   | 0.00        | 0.00       | $10,698.56       |\n| 07/21/25         | $20,665.19       | -$10,595.69              | 0.00                   | 0.00        | 0.00       | $10,069.50       |\n| 07/22/25         | $13,866.96       | -$3,806.29               | 0.00                   | 0.00        | 0.00       | $10,060.67       |\n| 07/23/25         | $5,205.66        | -$469.81                 | 0.00                   | 0.00        | 0.00       | $4,735.85        |\n| 07/24/25         | $9,683.73        | -$1,574.02               | 0.00                   | 0.00        | 0.00       | $8,109.71        |\n| 07/25/25         | $30,616.95       | -$14,497.71              | 0.00                   | 0.00        | 0.00       | $16,119.24       |\n| 07/28/25         | $11,595.51       | -$1,537.79               | 0.00                   | 0.00        | 0.00       | $10,057.72       |\n| 07/29/25         | $17,537.21       | -$2,392.52               | 0.00                   | 0.00        | 0.00       | $15,144.69       |\n| 07/30/25         | $21,216.43       | -$7,884.35               | 0.00                   | 0.00        | 0.00       | $13,332.08       |\n| 07/31/25         | $13,892.97       | -$4,176.68               | 0.00                   | 0.00        | 0.00       | $9,716.29        |\n| Month End Charge | 0.00             | 0.00                     | 0.00                   | 0.00        | -$5,801.52 | -$5,801.52       |\n| Total            | $395,999.78      | -$122,700.97             | 0.00                   | -$14.52     | -$5,801.52 | $267,482.77      |\n\n\n4120 Dublin Blvd, Dublin, CA 94568\n\n\n\nYOUR CARD PROCESSING STATEMENT\n\nMerchant Number: 191027606885\nCustomer Service: Website - \n                  Phone - 1-800-853-1499\n\nPage 2 of 7\nStatement Period: 07/01/25 - 07/31/25\n\n## SUMMARY BY CARD TYPE\n\n| Card Type        | Average Ticket | Total Gross Sales You Submitted<br/>Items | Total Gross Sales You Submitted<br/>Amount | Refunds<br/>Items | Refunds<br/>Amount | Total Amount You Submitted<br/>Items | Total Amount You Submitted<br/>Amount |\n| ---------------- | -------------- | ----------------------------------------- | ------------------------------------------ | ----------------- | ------------------ | ------------------------------------ | ------------------------------------- |\n| Mastercard       | $292.41        | 252                                       | $80,502.99                                 | 16                | -$2,138.40         | 268                                  | $78,364.59                            |\n| VISA             | $288.20        | 601                                       | $195,154.15                                | 43                | -$9,553.50         | 644                                  | $185,600.65                           |\n| Discover         | $317.23        | 14                                        | $4,824.22                                  | 1                 | -$65.84            | 15                                   | $4,758.38                             |\n| American Express | $498.78        | 227                                       | $128,326.14                                | 19                | -$5,625.17         | 246                                  | $122,700.97                           |\n| Debit/Atm        | $915.04        | 5                                         | $4,575.19                                  | 0                 | 0.00               | 5                                    | $4,575.19                             |\n| Total            |                | 1,099                                     | $413,382.69                                | 79                | -$17,382.91        | 1,178                                | $395,999.78                           |\n\n\n## SUMMARY BY BATCH\n\n| Batch        | Submit Date | Average Ticket | Total Gross Sales You Submitted<br/>Items | Total Gross Sales You Submitted<br/>Amount | Refunds<br/>Items | Refunds<br/>Amount | Total Amount You Submitted<br/>Items | Total Amount You Submitted<br/>Amount |\n| ------------ | ----------- | -------------- | ----------------------------------------- | ------------------------------------------ | ----------------- | ------------------ | ------------------------------------ | ------------------------------------- |\n| 012036240053 | 07/01/25    | $300.06        | 45                                        | $15,585.96                                 | 4                 | -$882.94           | 49                                   | $14,703.02                            |\n| 018315012028 | 07/01/25    | $28.31         | 1                                         | $28.31                                     | 0                 | 0.00               | 1                                    | $28.31                                |\n| 018315022028 | 07/02/25    | $172.70        | 1                                         | $172.70                                    | 0                 | 0.00               | 1                                    | $172.70                               |\n| 022037230050 | 07/02/25    | $127.69        | 39                                        | $5,492.76                                  | 1                 | -$385.20           | 40                                   | $5,107.56                             |\n| 032040580052 | 07/03/25    | $309.03        | 48                                        | $19,826.90                                 | 6                 | -$3,139.08         | 54                                   | $16,687.82                            |\n| 018315072027 | 07/07/25    | $278.78        | 1                                         | $278.78                                    | 0                 | 0.00               | 1                                    | $278.78                               |\n| 072035560051 | 07/07/25    | $263.96        | 57                                        | $16,795.09                                 | 4                 | -$693.80           | 61                                   | $16,101.29                            |\n| 082036440052 | 07/08/25    | $595.57        | 47                                        | $28,650.06                                 | 1                 | -$62.94            | 48                                   | $28,587.12                            |\n| 092035510052 | 07/09/25    | $200.11        | 51                                        | $10,205.43                                 | 0                 | 0.00               | 51                                   | $10,205.43                            |\n| 102038000052 | 07/10/25    | $576.34        | 53                                        | $32,451.64                                 | 3                 | -$176.45           | 56                                   | $32,275.19                            |\n| 112039030051 | 07/11/25    | $202.46        | 50                                        | $15,279.00                                 | 3                 | -$4,548.57         | 53                                   | $10,730.43                            |\n| 122036160009 | 07/12/25    | $844.82        | 1                                         | $844.82                                    | 0                 | 0.00               | 1                                    | $844.82                               |\n| 142036240053 | 07/14/25    | $407.00        | 56                                        | $24,357.98                                 | 3                 | -$344.98           | 59                                   | $24,013.00                            |\n| 152037210050 | 07/15/25    | $384.50        | 55                                        | $22,944.78                                 | 3                 | -$643.91           | 58                                   | $22,300.87                            |\n| 162036030051 | 07/16/25    | $380.40        | 66                                        | $29,103.45                                 | 6                 | -$1,714.96         | 72                                   | $27,388.49                            |\n| 172038190050 | 07/17/25    | $345.96        | 54                                        | $21,853.40                                 | 6                 | -$1,095.61         | 60                                   | $20,757.79                            |\n| 182038530051 | 07/18/25    | $414.16        | 49                                        | $22,642.70                                 | 3                 | -$1,106.15         | 52                                   | $21,536.55                            |\n| 212036440052 | 07/21/25    | $322.89        | 62                                        | $21,268.95                                 | 2                 | -$603.76           | 64                                   | $20,665.19                            |\n| 018315222027 | 07/22/25    | $1,092.78      | 1                                         | $1,092.78                                  | 0                 | 0.00               | 1                                    | $1,092.78                             |\n| 222036160053 | 07/22/25    | $290.32        | 40                                        | $13,372.39                                 | 4                 | -$598.21           | 44                                   | $12,774.18                            |\n| 232035570052 | 07/23/25    | $136.99        | 37                                        | $5,261.65                                  | 1                 | -$55.99            | 38                                   | $5,205.66                             |\n| 242037140050 | 07/24/25    | $254.84        | 37                                        | $9,700.50                                  | 1                 | -$16.77            | 38                                   | $9,683.73                             |\n| 252038300051 | 07/25/25    | $493.82        | 59                                        | $30,672.66                                 | 3                 | -$55.71            | 62                                   | $30,616.95                            |\n| 282036130051 | 07/28/25    | $241.57        | 44                                        | $11,811.08                                 | 4                 | -$215.57           | 48                                   | $11,595.51                            |\n| 018315292028 | 07/29/25    | $3,002.62      | 1                                         | $3,002.62                                  | 0                 | 0.00               | 1                                    | $3,002.62                             |\n| 292036310051 | 07/29/25    | $238.27        | 57                                        | $14,742.47                                 | 4                 | -$207.88           | 61                                   | $14,534.59                            |\n| 302036430050 | 07/30/25    | $365.80        | 45                                        | $21,828.54                                 | 13                | -$612.11           | 58                                   | $21,216.43                            |\n| 312036550052 | 07/31/25    | $302.02        | 42                                        | $14,115.29                                 | 4                 | -$222.32           | 46                                   | $13,892.97                            |\n| Total        |             |                | 1,099                                     | $413,382.69                                | 79                | -$17,382.91        | 1,178                                | $395,999.78                           |\n\n\n## THIRD PARTY TRANSACTIONS\n\nTransactions that are passed directly to Third Party Service Providers for processing and/or funding.\n\n| Date     | Description                                | Amount      |\n| -------- | ------------------------------------------ | ----------- |\n| 07/01/25 | Transactions submitted to American Express | -$1,347.14  |\n| 07/02/25 | Transactions submitted to American Express | -$979.47    |\n| 07/03/25 | Transactions submitted to American Express | -$5,820.14  |\n| 07/07/25 | Transactions submitted to American Express | -$444.61    |\n| 07/08/25 | Transactions submitted to American Express | -$8,355.64  |\n| 07/09/25 | Transactions submitted to American Express | -$2,443.74  |\n| 07/10/25 | Transactions submitted to American Express | -$20,428.60 |\n| 07/11/25 | Transactions submitted to American Express | -$3,984.04  |\n\n\n4120 Dublin Blvd, Dublin, CA 94568\n\n\n\n# YOUR CARD PROCESSING STATEMENT\n\nMerchant Number: 191027606885\nCustomer Service: Website -\n                  Phone - 1-800-853-1499\n\nPage 3 of 7\nStatement Period: 07/01/25 - 07/31/25\n\n## THIRD PARTY TRANSACTIONS\nTransactions that are passed directly to Third Party Service Providers for processing and/or funding.\n\n| Date     | Description                                | Amount       |\n| -------- | ------------------------------------------ | ------------ |\n| 07/12/25 | Transactions submitted to American Express | -$844.82     |\n| 07/14/25 | Transactions submitted to American Express | -$3,545.46   |\n| 07/15/25 | Transactions submitted to American Express | -$5,568.03   |\n| 07/16/25 | Transactions submitted to American Express | -$4,607.06   |\n| 07/17/25 | Transactions submitted to American Express | -$6,559.37   |\n| 07/18/25 | Transactions submitted to American Express | -$10,837.99  |\n| 07/21/25 | Transactions submitted to American Express | -$10,595.69  |\n| 07/22/25 | Transactions submitted to American Express | -$3,806.29   |\n| 07/23/25 | Transactions submitted to American Express | -$469.81     |\n| 07/24/25 | Transactions submitted to American Express | -$1,574.02   |\n| 07/25/25 | Transactions submitted to American Express | -$14,497.71  |\n| 07/28/25 | Transactions submitted to American Express | -$1,537.79   |\n| 07/29/25 | Transactions submitted to American Express | -$2,392.52   |\n| 07/30/25 | Transactions submitted to American Express | -$7,884.35   |\n| 07/31/25 | Transactions submitted to American Express | -$4,176.68   |\n| TOTAL    |                                            | -$122,700.97 |\n\n\n## CHARGEBACKS/REVERSALS\nTransactions that are challenged or disputed by a cardholder or card-issuing bank.\n\n| Date                                               | Reference No. | Description | Card Number (Last 4 Digits) | Amount |\n| -------------------------------------------------- | ------------- | ----------- | --------------------------- | ------ |\n| No Chargebacks/Reversals for this Statement Period |               |             |                             |        |\n| Total                                              |               |             |                             | 0.00   |\n\n\n## ADJUSTMENTS\nThe amounts credited to, or deducted from, your account to resolve processing and billing discrepancies.\n\n| Date     | Description                                   | Amount  |\n| -------- | --------------------------------------------- | ------- |\n| 07/03/25 | MISC ADJUSTMENT VI CEDP COMM ENH DATA PGM FEE | -$14.52 |\n| TOTAL    |                                               | -$14.52 |\n\n\n## FEES\nAmount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing services.\n\n### TRANSACTION FEES\n\n| MASTERCARD                                       | Type                | Amount   |\n| ------------------------------------------------ | ------------------- | -------- |\n| MC-CORPORATE CREDIT REFUND 3                     | Interchange charges | $36.36   |\n| MC-WORLD ELITE MERIT III                         | Interchange charges | -$352.39 |\n| MC-BUS LEVEL 3 DATA RATE II                      | Interchange charges | -$111.63 |\n| MC ASSESSMNT TRAN AMT >=$1K 0 X TRNS $21929.53   | Interchange charges | -$2.19   |\n| MASTERCARD ASSESSMENT FEE 0.0014 TIMES $80502.99 | Interchange charges | -$112.70 |\n| MC-CORP DATA RATE II (US) PUR                    | Interchange charges | -$50.17  |\n| MC-COMML DATA RT II FLT NONFL                    | Interchange charges | -$66.39  |\n| MC-CORP DATA RATE II (US) BUS                    | Interchange charges | -$8.12   |\n| MC-ENHANCED MERIT III BASE                       | Interchange charges | -$6.14   |\n| MC-CORP DATA RATE III (US) PUR                   | Interchange charges | -$1.48   |\n| MC-HIGH VAL MERIT III BASE                       | Interchange charges | -$48.61  |\n| MC-COM DATA RATE I FLT NFUEL                     | Interchange charges | -$14.03  |\n| MC-CONSUMER CREDIT REFUND 3                      | Interchange charges | $4.05    |\n| MC-REG CONSM WFRAUD ADJ MC(DB)                   | Interchange charges | -$0.23   |\n| MC-BUS LEVEL 3 DATA RATE I                       | Interchange charges | -$0.60   |\n| MC-HIGH VAL MERIT I                              | Interchange charges | -$1.72   |\n| MC-REGULATED FRD ADJ COMM (DB)                   | Interchange charges | -$17.47  |\n\n\n4120 Dublin Blvd, Dublin, CA 94568\n\n\n\nYOUR CARD PROCESSING STATEMENT\n\n| Merchant Number  | Website -              | Page 4 of 7                          |\n| ---------------- | ---------------------- | ------------------------------------ |\n| Customer Service | Phone - 1-800-853-1499 | Statement Period 07/01/25 - 07/31/25 |\n\n\n## FEES\n\nAmount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing services.\n\n| Description                                                    | Category            | Amount   |\n| -------------------------------------------------------------- | ------------------- | -------- |\n| MC-DOMESTIC MERIT III (DB)                                     | Interchange charges | -$3.99   |\n| MC-BUS LEVEL 5 DATA RATE II                                    | Interchange charges | -$270.95 |\n| MC-BUS LEVEL 4 DATA RATE II                                    | Interchange charges | -$60.94  |\n| MC-DOMESTIC MERIT I                                            | Interchange charges | -$18.02  |\n| MC-WORLD ELITE MERIT I                                         | Interchange charges | -$14.58  |\n| MC-WORLDCARD MERIT III                                         | Interchange charges | -$12.82  |\n| MC-BUS LEVEL 2 DATA RATE II                                    | Interchange charges | -$3.73   |\n| MC-COMM DATA RATE II BUS (DB)                                  | Interchange charges | -$130.84 |\n| MC-BUS LEVEL 5 DATA RATE I                                     | Interchange charges | -$210.57 |\n| MC-REG INCENT FRF ADJ POS (DB)                                 | Interchange charges | -$10.49  |\n| MASTERCARD ACCESS FEE 252 TRANSACTIONS AT 0.003                | Service charges     | -$0.76   |\n| MASTERCARD SALES DISCOUNT 0.001331 DISC RATE TIMES $52344.74   | Service charges     | -$69.67  |\n| MC AUTH CONNECTIVITY FEE 218 KILOBYTES AT 0.00224              | Service charges     | -$0.49   |\n| MASTERCARD DEBIT SALES DISC 0.001331 DISC RATE TIMES $28158.25 | Service charges     | -$37.48  |\n| MC LICENSE VOLUME FEE 0.000062 DISC RATE TIMES $80502.99       | Service charges     | -$4.99   |\n| MC ACQUIRER AVS BILLING 259 TRANSACTIONS AT 0.01               | Fees                | -$2.59   |\n| MC NETWORK ACCESS AUTH FEE 262 TRANSACTIONS AT 0.0195          | Fees                | -$5.11   |\n| MASTERCARD AUTH FEE 279 TRANSACTIONS AT 0.121                  | Fees                | -$33.76  |\n\n\n### VISA\n\n| Description                                               | Category            | Amount   |\n| --------------------------------------------------------- | ------------------- | -------- |\n| VI DIGITAL COMMERCE SVC FEE MN 40 TRANSACTIONS AT .007500 | Fees                | -$0.30   |\n| VI DIGITAL COMMERCE SVCS FEE $38,089.76 AT .000075        | Fees                | -$2.86   |\n| VI-CPS/RETAIL ALL OTHER (PP)                              | Interchange charges | -$12.78  |\n| VI-US REGULATED NON-CPS (DB)                              | Interchange charges | -$0.22   |\n| VI-BUSINESS CARD TR1 LEVEL 2                              | Interchange charges | -$25.42  |\n| VI-BUSINESS CARD TR4 LEVEL 2                              | Interchange charges | -$793.13 |\n| VI-CPS/RETAIL KEY ENTERED(DB)                             | Interchange charges | -$30.26  |\n| VI-SERVICES TRAD REWARDS                                  | Interchange charges | -$71.97  |\n| VI-US BUS TR5 LVL2                                        | Interchange charges | -$214.14 |\n| VI-REG CONSUMER MQ (DB)                                   | Interchange charges | -$0.47   |\n| VI-BUSINESS CARD CP (DB)                                  | Interchange charges | -$7.83   |\n| VI-SERVICES INFINITE SQ                                   | Interchange charges | -$3.97   |\n| VI-US BUS TR2 PRD 1                                       | Interchange charges | -$1.15   |\n| VI-SERVICES SIGN PREF NTKN                                | Interchange charges | -$92.76  |\n| VI-COMM NON-PASS TRANS CREDIT                             | Interchange charges | $48.10   |\n| VI-US BUS TR3 PRD 2                                       | Interchange charges | -$5.86   |\n| VI-SERVICES SIGN PREFERRED                                | Interchange charges | -$914.47 |\n| VI-US REGULATED COMM (DB)                                 | Interchange charges | -$49.37  |\n| VI-US BUS TR2 PRD 2                                       | Interchange charges | -$1.11   |\n| VI-BUSINESS CARD TR2 LEVEL 2                              | Interchange charges | -$97.32  |\n| VI-US BUS TR4 PRD 2                                       | Interchange charges | -$42.17  |\n| VI-SERVICES SIGNATURE                                     | Interchange charges | -$85.20  |\n| VI-SERVICES TRADITIONAL                                   | Interchange charges | -$12.54  |\n| VI-RETAIL P2 SIGNATURE                                    | Interchange charges | -$8.66   |\n| VI-US BUS TR4 PRD 1                                       | Interchange charges | -$43.82  |\n| VI-RETKEY P1 SIGNATURE                                    | Interchange charges | -$2.82   |\n| VI-BUSINESS CARD TR3 LEVEL 2                              | Interchange charges | -$72.57  |\n| VI-RETAIL P2 INFINITE SQ                                  | Interchange charges | -$5.26   |\n| VI-RETAIL KEY ENT P1 RWDS                                 | Interchange charges | -$0.35   |\n| VI-US REGULATED (DB)                                      | Interchange charges | -$24.70  |\n| VI-CONS NON-PASS TRANS CREDIT                             | Interchange charges | $37.08   |\n| VI-NON QUAL CONSUMER CR                                   | Interchange charges | -$318.47 |\n| VI-RETAIL ALL OTHER P2 TRAD                               | Interchange charges | -$1.96   |\n| VI-US BUS TR5 PRD 2                                       | Interchange charges | -$4.27   |\n| VI-RETAIL P2 TRAD REWARD                                  | Interchange charges | -$0.31   |\n| VI-RETKEY P1 SIGN PREFERRED                               | Interchange charges | -$10.81  |\n| VI-PURCHASING CARD LEVEL 2                                | Interchange charges | -$34.25  |\n| VI-RETAIL P2 SIGN PREFERRED                               | Interchange charges | -$32.69  |\n| VISA ASSESSMENT FEE CR 0.0014 TIMES $134040.50            | Interchange charges | -$187.66 |\n| VI-US PURCHASE PRODUCT 3                                  | Interchange charges | -$162.83 |\n| VI-EIRF NON CPS ALL OTHER (PP)                            | Interchange charges | -$13.19  |\n\n\n4120 Dublin Blvd, Dublin, CA 94568\n\n\n\n# YOUR CARD PROCESSING STATEMENT\n\nMerchant Number: 191027606885\nCustomer Service: Website - \n                  Phone - 1-800-853-1499\n\nPage 5 of 7\nStatement Period: 07/01/25 - 07/31/25\n\n## FEES\n\nAmount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing services.\n\n| Description                                                  | Type                | Amount   |\n| ------------------------------------------------------------ | ------------------- | -------- |\n| VI-US CPS/SMALL TCKT REG (DB)                                | Interchange charges | -$3.82   |\n| VISA ASSESSMENT FEE DB 0.0013 TIMES $61113.65                | Interchange charges | -$79.45  |\n| VI-CPS/RETAIL ALL OTHER (DB)                                 | Interchange charges | -$18.39  |\n| VISA DEBIT SALES DISCOUNT 0.001331 DISC RATE TIMES $61113.65 | Service charges     | -$81.34  |\n| VISA SALES DISCOUNT 0.001331 DISC RATE TIMES $134040.50      | Service charges     | -$178.41 |\n| VISA ACCESS FEE 0.0011 DISC RATE TIMES $0.00                 | Service charges     | -$0.66   |\n| VI NTWK ACQ PROC FEE US DB/PP 278 TRANSACTIONS AT 0.0155     | Fees                | -$4.31   |\n| VISA AUTH FEE 683 TRANSACTIONS AT 0.121                      | Fees                | -$82.64  |\n| VI-ADDRESS VER SVC FEE 535 TRANSACTIONS AT 0.001             | Fees                | -$0.54   |\n| VI NTWK ACQ PROC FEE US CR 362 TRANSACTIONS AT 0.0195        | Fees                | -$7.06   |\n\n\n### DISCOVER\n\n| Description                                                   | Type                | Amount  |\n| ------------------------------------------------------------- | ------------------- | ------- |\n| DSCVR CNSMR ADJ VCHR PGM 3 RW                                 | Interchange charges | $1.15   |\n| DSCVR PSL RTL PP                                              | Interchange charges | -$50.32 |\n| DSCVR PSL RTL DB                                              | Interchange charges | -$0.44  |\n| DSCVR PSL RTL RW                                              | Interchange charges | -$1.22  |\n| DSCVR COMML ELECT OTHER                                       | Interchange charges | -$55.24 |\n| DISCOVER ASSESSMENT FEE 0.0014 TIMES $4824.22                 | Interchange charges | -$6.75  |\n| DSCVR PSL RTL PR                                              | Interchange charges | -$2.67  |\n| DSCVR KEY ENTRY PP                                            | Interchange charges | -$3.79  |\n| DISCOVER DATA USAGE FEE 15 TRANSACTIONS AT 0.0025             | Service charges     | -$0.04  |\n| DISCOVER DEBIT SALES DISCOUNT 0.001331 DISC RATE TIMES $25.81 | Service charges     | -$0.03  |\n| DISCOVER SALES DISCOUNT 0.001331 DISC RATE TIMES $4798.41     | Service charges     | -$6.39  |\n| NETWORK AUTHORIZATION FEE 14 TRANSACTIONS AT 0.019            | Fees                | -$0.27  |\n| DISCOVER AUTH FEE 15 TRANSACTIONS AT 0.121                    | Fees                | -$1.82  |\n| ADDRS VERIFICATION SERVICE FEE 14 TRANSACTIONS AT 0.005       | Fees                | -$0.07  |\n\n\n### AMERICAN EXPRESS\n\n| Description                             | Type | Amount  |\n| --------------------------------------- | ---- | ------- |\n| AMEX AUTH FEE 254 TRANSACTIONS AT 0.121 | Fees | -$30.73 |\n\n\n### Other\n\n| Description                                              | Type                | Amount   |\n| -------------------------------------------------------- | ------------------- | -------- |\n| MC NTWRK ACCESS SETTLEMENT FEE 16 TRANSACTIONS AT 0.0195 | Interchange charges | -$0.31   |\n| DIGITAL INVESTMENT FEE $140.86 AT0.0001                  | Service charges     | -$0.01   |\n| MC CLEARING CONNECTIVITY FEE 251 KILOBYTES AT 0.00224    | Service charges     | -$0.56   |\n| VI BASE II SYSTEM FILE FEE 663 TRANSACTIONS AT 0.0018    | Service charges     | -$1.19   |\n| VI BASE II CR VCHER FEE US D/P 19 TRANSACTIONS AT 0.0155 | Service charges     | -$0.29   |\n| VI BASE II CR VCHER FEE US CR 25 TRANSACTIONS AT 0.0195  | Service charges     | -$0.49   |\n| AVS LOCAL AUTHORIZATION FEE 1135 TRANSACTIONS AT 0.11    | Fees                | -$124.85 |\n\n\n**TOTAL TRANSACTION FEES: -$5,692.93**\n\n## DEBIT NETWORK FEES\n\n| Description                                             | Type                | Amount  |\n| ------------------------------------------------------- | ------------------- | ------- |\n| MAESTRO REG                                             | Interchange charges | -$0.79  |\n| ACCEL ADVANTAGE REG                                     | Interchange charges | -$34.06 |\n| STAR NE                                                 | Interchange charges | -$3.59  |\n| DEBIT/ATM CARD TRANSACTION FEE 5 TRANSACTIONS AT 0.1815 | Service charges     | -$0.91  |\n\n\n**TOTAL DEBIT NETWORK FEES: -$39.35**\n\n## ACCOUNT FEES\n\n| Description                                           | Type | Amount  |\n| ----------------------------------------------------- | ---- | ------- |\n| VI-COMMERCIAL SOLUTIONS FEE .000100 TIMES $107,447.12 | Fees | -$10.74 |\n| VI CEDP COMM ENH DATA PGM FEE $64,212.52 AT .000500   | Fees | -$32.11 |\n| DEBIT GATEWAY SWITCH FEE 4 TRANSACTIONS AT .010000    | Fees | -$0.04  |\n| MC MERCH MONTHLY LOCATION FEE                         | Fees | -$1.25  |\n| PCI COMPLIANCE SERVICE PGM FEE                        | Fees | -$15.00 |\n| VISA NETWORK FEE CP 1B-08                             | Fees | -$4.00  |\n| VISA ZERO FLOOR LIMIT FEE 24 TRANSACTIONS AT 0.2      | Fees | -$4.80  |\n| VI TRANSACTION INTEGRITY FEE 13 TRANSACTIONS AT 0.1   | Fees | -$1.30  |\n\n\n**TOTAL ACCOUNT FEES: -$69.24**\n\n**TOTAL: -$5,801.52**\n\n**Total Interchange Charges/Program Fees: -$5,051.66**\n\n\n\nYOUR CARD PROCESSING STATEMENT\n\nMerchant Number: 191027606885\nCustomer Service: Website - \n                  Phone - 1-800-853-1499\n\nPage 6 of 7\nStatement Period: 07/01/25 - 07/31/25\n\n## FEES\nAmount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing services.\n\nTotal Service Charges: -$383.71\nTotal Fees: -$366.15\nTotal (Service Charges, Interchange Charges/Program Fees, and Fees): -$5,801.52\n\n## INTERCHANGE CHARGES/PROGRAM FEES\nThese are the variable fees charged by Card Organizations for processing transactions. The Interchange / Program charges in this section are also reflected in the Fee section of the statement.\n\n| Product/Description            | Sales Total | % Of Sales | Number of Transactions | % of Total Transactions | Interchange/Program Rate | Cost Per Transaction | Sub Total | Total Interchange/Program Charges |\n| ------------------------------ | ----------- | ---------- | ---------------------- | ----------------------- | ------------------------ | -------------------- | --------- | --------------------------------- |\n| **MASTERCARD**                 |             |            |                        |                         |                          |                      |           |                                   |\n| MC-REG CONSM WFRAUD ADJ MC(DB) | $13.21      | 0%         | 1                      | 0%                      | 0.0005                   | $0.220               |           | -$0.23                            |\n| MC-BUS LEVEL 3 DATA RATE I     | $17.70      | 0%         | 1                      | 0%                      | 0.0285                   | $0.100               |           | -$0.60                            |\n| MC-BUS LEVEL 2 DATA RATE II    | $167.18     | 0%         | 3                      | 1%                      | 0.0205                   | $0.100               |           | -$3.73                            |\n| MC-REGULATED FRD ADJ COMM (DB) | $12,938.98  | 16%        | 50                     | 19%                     | 0.0005                   | $0.220               |           | -$17.47                           |\n| MC-CONSUMER CREDIT REFUND 3    | -$231.56    | 0%         | 2                      | 1%                      | 0.0175                   | 0.000                | $4.05     |                                   |\n| MC-COM DATA RATE I FLT NFUEL   | $508.58     | 1%         | 3                      | 1%                      | 0.0270                   | $0.100               |           | -$14.03                           |\n| MC-BUS LEVEL 3 DATA RATE II    | $5,272.79   | 6%         | 9                      | 3%                      | 0.0210                   | $0.100               |           | -$111.63                          |\n| MC-BUS LEVEL 5 DATA RATE I     | $6,975.57   | 8%         | 13                     | 5%                      | 0.0300                   | $0.100               |           | -$210.57                          |\n| MC-DOMESTIC MERIT III (DB)     | $366.03     | 0%         | 1                      | 0%                      | 0.0105                   | $0.150               |           | -$3.99                            |\n| MC-BUS LEVEL 4 DATA RATE II    | $2,720.17   | 3%         | 11                     | 4%                      | 0.0220                   | $0.100               |           | -$60.94                           |\n| MC-HIGH VAL MERIT I            | $62.37      | 0%         | 1                      | 0%                      | 0.0260                   | $0.100               |           | -$1.72                            |\n| MC-COMM DATA RATE II BUS (DB)  | $6,173.52   | 7%         | 12                     | 4%                      | 0.0210                   | $0.100               |           | -$130.84                          |\n| MC-REGULATED W FRD REFUNDS     | -$261.45    | 0%         | 4                      | 1%                      | 0.0000                   | 0.000                |           | 0.00                              |\n| MC-WORLDCARD MERIT III         | $648.57     | 1%         | 5                      | 2%                      | 0.0190                   | $0.100               |           | -$12.82                           |\n| MC-REG INCENT FRF ADJ POS (DB) | $8,666.51   | 10%        | 28                     | 10%                     | 0.0005                   | $0.220               |           | -$10.49                           |\n| MC-DOMESTIC MERIT I            | $918.91     | 1%         | 1                      | 0%                      | 0.0195                   | $0.100               |           | -$18.02                           |\n| MC-WORLD ELITE MERIT I         | $541.69     | 1%         | 5                      | 2%                      | 0.0260                   | $0.100               |           | -$14.58                           |\n| MC-CORPORATE CREDIT REFUND 3   | -$1,645.39  | 2%         | 10                     | 4%                      | 0.0221                   | 0.000                | $36.36    |                                   |\n| MC-ENHANCED MERIT III BASE     | $335.51     | 0%         | 1                      | 0%                      | 0.0180                   | $0.100               |           | -$6.14                            |\n| MC-CORP DATA RATE II (US) PUR  | $1,998.70   | 2%         | 2                      | 1%                      | 0.0250                   | $0.100               |           | -$50.17                           |\n| MC-BUS LEVEL 5 DATA RATE II    | $11,815.61  | 14%        | 51                     | 19%                     | 0.0225                   | $0.100               |           | -$270.95                          |\n| MC-CORP DATA RATE III (US) PUR | $61.93      | 0%         | 3                      | 1%                      | 0.0190                   | $0.100               |           | -$1.48                            |\n| MC-CORP DATA RATE II (US) BUS  | $417.09     | 1%         | 2                      | 1%                      | 0.0190                   | $0.100               |           | -$8.12                            |\n| MC-COMML DATA RT II FLT NONFL  | $2,595.40   | 3%         | 15                     | 6%                      | 0.0250                   | $0.100               |           | -$66.39                           |\n| MC-HIGH VAL MERIT III BASE     | $2,091.95   | 3%         | 5                      | 2%                      | 0.0230                   | $0.100               |           | -$48.61                           |\n| MC-WORLD ELITE MERIT III       | $15,195.02  | 18%        | 29                     | 11%                     | 0.0230                   | $0.100               |           | -$352.39                          |\n| MASTERCARD TOTAL               | $78,364.59  |            | 268                    |                         |                          |                      |           | -$1,375.50                        |\n| **VISA**                       |             |            |                        |                         |                          |                      |           |                                   |\n| VI-US REGULATED NON-CPS (DB)   | $6.72       | 0%         | 1                      | 0%                      | 0.0005                   | $0.220               |           | -$0.22                            |\n| VI-CPS/RETAIL ALL OTHER (PP)   | $1,020.34   | 0%         | 7                      | 1%                      | 0.0115                   | $0.150               |           | -$12.78                           |\n| VI-SERVICES SIGNATURE          | $4,535.04   | 2%         | 13                     | 2%                      | 0.0185                   | $0.100               |           | -$85.20                           |\n| VI-CPS/RETAIL KEY ENTERED(DB)  | $1,824.85   | 1%         | 1                      | 0%                      | 0.0165                   | $0.150               |           | -$30.26                           |\n| VI-EIRF NON CPS ALL OTHER (PP) | $721.56     | 0%         | 1                      | 0%                      | 0.0180                   | $0.200               |           | -$13.19                           |\n| VI-US BUS TR2 PRD 1            | $37.45      | 0%         | 1                      | 0%                      | 0.0280                   | $0.100               |           | -$1.15                            |\n| VI-SERVICES SIGN PREF NTKN     | $3,831.71   | 2%         | 8                      | 1%                      | 0.0240                   | $0.100               |           | -$92.76                           |\n| VI-US BUS TR5 PRD 2            | $180.79     | 0%         | 2                      | 0%                      | 0.0225                   | $0.100               |           | -$4.27                            |\n| VI-BUSINESS CARD CP (DB)       | $425.22     | 0%         | 6                      | 1%                      | 0.0170                   | $0.100               |           | -$7.83                            |\n| VI-US REGULATED (DB)           | $15,967.54  | 8%         | 76                     | 12%                     | 0.0005                   | $0.220               |           | -$24.70                           |\n| VI-PURCHASING CARD LEVEL 2     | $1,349.81   | 1%         | 5                      | 1%                      | 0.0250                   | $0.100               |           | -$34.25                           |\n| VI-CONS NON-PASS TRANS CREDIT  | -$2,106.58  | 1%         | 14                     | 2%                      | 0.0176                   | 0.000                | $37.08    |                                   |\n| VI-RETKEY P1 SIGNATURE         | $127.89     | 0%         | 2                      | 0%                      | 0.0205                   | $0.100               |           | -$2.82                            |\n| VI-BUSINESS CARD TR1 LEVEL 2   | $1,316.87   | 1%         | 4                      | 1%                      | 0.0190                   | $0.100               |           | -$25.42                           |\n| VI-RETKEY P1 SIGN PREFERRED    | $404.40     | 0%         | 7                      | 1%                      | 0.0250                   | $0.100               |           | -$10.81                           |\n| VI-SERVICES INFINITE SQ        | $168.41     | 0%         | 1                      | 0%                      | 0.0230                   | $0.100               |           | -$3.97                            |\n| VI-REG CONSUMER MQ (DB)        | $61.80      | 0%         | 2                      | 0%                      | 0.0005                   | $0.220               |           | -$0.47                            |\n\n\n4120 Dublin Blvd, Dublin, CA 94568\n\n\n\n# YOUR CARD PROCESSING STATEMENT\n\nMerchant Number: 191027606885\nCustomer Service: Website - \n                  Phone - 1-800-853-1499\n\nPage 7 of 7\nStatement Period: 07/01/25 - 07/31/25\n\n## INTERCHANGE CHARGES/PROGRAM FEES\nThese are the variable fees charged by Card Organizations for processing transactions. The Interchange / Program charges in this section are also reflected in the Fee section of the statement.\n\n| Product/Description           | Sales Total | % Of Sales | Number of Transactions | % of Total Transactions | Interchange/Program Rate | Cost Per Transaction | Sub Total | Total Interchange/Program Charges |\n| ----------------------------- | ----------- | ---------- | ---------------------- | ----------------------- | ------------------------ | -------------------- | --------- | --------------------------------- |\n| VI-SERVICES TRAD REWARDS      | $4,216.03   | 2%         | 3                      | 0%                      | 0.0170                   | $0.100               |           | -$71.97                           |\n| VI-RETAIL ALL OTHER P2 TRAD   | $110.14     | 0%         | 3                      | 0%                      | 0.0151                   | $0.100               |           | -$1.96                            |\n| VI-COMM NON-PASS TRANS CREDIT | -$2,046.90  | 1%         | 11                     | 2%                      | 0.0235                   | 0.000                | $48.10    |                                   |\n| VI-SERVICES SIGN PREFERRED    | $39,528.90  | 19%        | 53                     | 8%                      | 0.0230                   | $0.100               |           | -$914.47                          |\n| VI-RETAIL KEY ENT P1 RWDS     | $12.23      | 0%         | 1                      | 0%                      | 0.0204                   | $0.100               |           | -$0.35                            |\n| VI-RETAIL P2 SIGNATURE        | $470.55     | 0%         | 9                      | 1%                      | 0.0165                   | $0.100               |           | -$8.66                            |\n| VI-BUSINESS CARD TR2 LEVEL 2  | $4,634.93   | 2%         | 23                     | 4%                      | 0.0205                   | $0.100               |           | -$97.32                           |\n| VI-US BUS TR2 PRD 2           | $49.30      | 0%         | 1                      | 0%                      | 0.0205                   | $0.100               |           | -$1.11                            |\n| VI-US CPS/SMALL TCKT REG (DB) | $165.59     | 0%         | 17                     | 3%                      | 0.0005                   | $0.220               |           | -$3.82                            |\n| VI-US PURCHASE PRODUCT 3      | $8,412.15   | 4%         | 30                     | 5%                      | 0.0190                   | $0.100               |           | -$162.83                          |\n| VI-CPS/RETAIL ALL OTHER (DB)  | $2,017.46   | 1%         | 15                     | 2%                      | 0.0080                   | $0.150               |           | -$18.39                           |\n| VI-NON QUAL CONSUMER CR       | $10,075.16  | 5%         | 11                     | 2%                      | 0.0315                   | $0.100               |           | -$318.47                          |\n| VI-US BUS TR4 PRD 1           | $1,475.39   | 1%         | 3                      | 0%                      | 0.0295                   | $0.100               |           | -$43.82                           |\n| VI-US REGULATED COMM (DB)     | $38,902.57  | 19%        | 136                    | 21%                     | 0.0005                   | $0.220               |           | -$49.37                           |\n| VI-RETAIL P2 INFINITE SQ      | $211.45     | 0%         | 4                      | 1%                      | 0.0230                   | $0.100               |           | -$5.26                            |\n| VI-RETAIL P2 SIGN PREFERRED   | $1,413.83   | 1%         | 30                     | 5%                      | 0.0210                   | $0.100               |           | -$32.69                           |\n| VI-BUSINESS CARD TR3 LEVEL 2  | $3,412.73   | 2%         | 9                      | 1%                      | 0.0210                   | $0.100               |           | -$72.57                           |\n| VI-US BUS TR3 PRD 2           | $269.72     | 0%         | 2                      | 0%                      | 0.0210                   | $0.100               |           | -$5.86                            |\n| VI-CRVCHR DEBIT CARD (DB)     | -$5,400.02  | 3%         | 18                     | 3%                      | 0.0000                   | 0.000                |           | 0.00                              |\n| VI-SERVICES TRADITIONAL       | $802.63     | 0%         | 1                      | 0%                      | 0.0155                   | $0.100               |           | -$12.54                           |\n| VI-BUSINESS CARD TR4 LEVEL 2  | $35,733.37  | 17%        | 70                     | 11%                     | 0.0220                   | $0.100               |           | -$793.13                          |\n| VI-US BUS TR5 LVL2            | $9,352.66   | 5%         | 37                     | 6%                      | 0.0225                   | $0.100               |           | -$214.14                          |\n| VI-RETAIL P2 TRAD REWARD      | $12.80      | 0%         | 1                      | 0%                      | 0.0165                   | $0.100               |           | -$0.31                            |\n| VI-US BUS TR4 PRD 2           | $1,894.16   | 1%         | 5                      | 1%                      | 0.0220                   | $0.100               |           | -$42.17                           |\n| VISA TOTAL                    | $185,600.65 |            | 644                    |                         |                          |                      |           | -$3,136.13                        |\n\n\n### DISCOVER\n\n| DSCVR COMML ELECT OTHER       | $2,230.26 | 46% | 4  | 27% | 0.0245 | $0.150 |       | -$55.24  |\n| ----------------------------- | --------- | --- | -- | --- | ------ | ------ | ----- | -------- |\n| DSCVR PSL RTL RW              | $65.14    | 1%  | 1  | 7%  | 0.0172 | $0.100 |       | -$1.22   |\n| DSCVR PSL RTL DB              | $25.81    | 1%  | 1  | 7%  | 0.0110 | $0.160 |       | -$0.44   |\n| DSCVR PSL RTL PP              | $2,214.29 | 45% | 5  | 33% | 0.0225 | $0.100 |       | -$50.32  |\n| DSCVR KEY ENTRY PP            | $140.86   | 3%  | 2  | 13% | 0.0255 | $0.100 |       | -$3.79   |\n| DSCVR CNSMR ADJ VCHR PGM 3 RW | -$65.84   | 1%  | 1  | 7%  | 0.0175 | 0.000  | $1.15 |          |\n| DSCVR PSL RTL PR              | $147.86   | 3%  | 1  | 7%  | 0.0174 | $0.100 |       | -$2.67   |\n| DISCOVER TOTAL                | $4,758.38 |     | 15 |     |        |        |       | -$112.53 |\n\n\n### AMERICAN EXPRESS\n\n| AMEX PASS-THRU         | $122,700.97 | 100% | 246 | 100% | 0.0000 | 0.000 |   | 0.00 |\n| ---------------------- | ----------- | ---- | --- | ---- | ------ | ----- | - | ---- |\n| AMERICAN EXPRESS TOTAL | $122,700.97 |      | 246 |      |        |       |   | 0.00 |\n\n\n### DEBIT CARD\n\n| STAR NE             | $172.70   | 4%  | 1 | 20% | 0.0000 | 0.000 |   | 0.00 |\n| ------------------- | --------- | --- | - | --- | ------ | ----- | - | ---- |\n| ACCEL ADVANTAGE REG | $3,309.71 | 72% | 3 | 60% | 0.0000 | 0.000 |   | 0.00 |\n| MAESTRO REG         | $1,092.78 | 24% | 1 | 20% | 0.0000 | 0.000 |   | 0.00 |\n| DEBIT CARD TOTAL    | $4,575.19 |     | 5 |     |        |       |   | 0.00 |\n\n\n**TOTAL: $395,999.78**  \n**Number of Transactions: 1,178**  \n**Total Charges: -$4,624.16**\n\n4120 Dublin Blvd, Dublin, CA 94568\n\nNO_CONTENT_HERE\n",
+    "length": 51592
+  },
+  "metadata": {
+    "pymupdf_stats": {
+      "total_tables": 26,
+      "total_rows": 129,
+      "by_section": {
+        "FEES": 3,
+        "INTERCHANGE": 2,
+        "SUMMARY_CARD": 1,
+        "OTHER": 20
+      }
+    },
+    "llama_chunks": 8
+  },
+  "llm_instructions": "\nEXTRACTION STRATEGY:\n1. Use 'structured_data' as your PRIMARY source - this is reliable and deterministic\n2. Use 'rich_context.markdown' to:\n   - Fill in missing descriptions\n   - Understand relationships between rows\n   - Extract additional context (dates, merchant info, etc.)\n   - Clarify ambiguous values\n3. Cross-reference both sources to ensure accuracy\n4. If there's a conflict, trust the structured_data for numbers, but use markdown for descriptions\n\nPRIORITY ORDER:\n- Numbers/amounts: structured_data first\n- Descriptions/text: markdown first (better formatting)\n- Counts: structured_data first\n- Context: markdown only\n"
+}

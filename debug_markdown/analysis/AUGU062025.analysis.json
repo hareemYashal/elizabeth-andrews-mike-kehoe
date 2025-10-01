@@ -1,0 +1,490 @@
+{
+  "total_lines": 488,
+  "sections": [
+    {
+      "line": 3,
+      "level": 1,
+      "title": "YOUR CARD PROCESSING STATEMENT"
+    },
+    {
+      "line": 5,
+      "level": 1,
+      "title": "JOHNSTONE SUPPLY-AUGUSTA"
+    },
+    {
+      "line": 21,
+      "level": 1,
+      "title": "SUMMARY"
+    },
+    {
+      "line": 33,
+      "level": 1,
+      "title": "SUMMARY BY DAY"
+    },
+    {
+      "line": 65,
+      "level": 1,
+      "title": "YOUR CARD PROCESSING STATEMENT"
+    },
+    {
+      "line": 75,
+      "level": 1,
+      "title": "SUMMARY BY CARD TYPE"
+    },
+    {
+      "line": 86,
+      "level": 1,
+      "title": "SUMMARY BY BATCH"
+    },
+    {
+      "line": 117,
+      "level": 1,
+      "title": "THIRD PARTY TRANSACTIONS"
+    },
+    {
+      "line": 144,
+      "level": 1,
+      "title": "THIRD PARTY TRANSACTIONS"
+    },
+    {
+      "line": 162,
+      "level": 1,
+      "title": "CHARGEBACKS/REVERSALS"
+    },
+    {
+      "line": 172,
+      "level": 1,
+      "title": "ADJUSTMENTS"
+    },
+    {
+      "line": 182,
+      "level": 1,
+      "title": "FEES"
+    },
+    {
+      "line": 186,
+      "level": 1,
+      "title": "TRANSACTION FEES"
+    },
+    {
+      "line": 223,
+      "level": 1,
+      "title": "FEES"
+    },
+    {
+      "line": 236,
+      "level": 1,
+      "title": "VISA"
+    },
+    {
+      "line": 284,
+      "level": 1,
+      "title": "DISCOVER"
+    },
+    {
+      "line": 303,
+      "level": 1,
+      "title": "FEES"
+    },
+    {
+      "line": 324,
+      "level": 1,
+      "title": "DEBIT NETWORK FEES"
+    },
+    {
+      "line": 338,
+      "level": 1,
+      "title": "ACCOUNT FEES"
+    },
+    {
+      "line": 352,
+      "level": 1,
+      "title": "TOTAL"
+    },
+    {
+      "line": 356,
+      "level": 1,
+      "title": "Total Interchange Charges/Program Fees"
+    },
+    {
+      "line": 360,
+      "level": 1,
+      "title": "Total Service Charges"
+    },
+    {
+      "line": 364,
+      "level": 1,
+      "title": "Total Fees"
+    },
+    {
+      "line": 368,
+      "level": 1,
+      "title": "Total (Service Charges, Interchange Charges/Program Fees, and Fees)"
+    },
+    {
+      "line": 372,
+      "level": 1,
+      "title": "INTERCHANGE CHARGES/PROGRAM FEES"
+    },
+    {
+      "line": 390,
+      "level": 1,
+      "title": "INTERCHANGE CHARGES/PROGRAM FEES"
+    },
+    {
+      "line": 416,
+      "level": 1,
+      "title": "VISA"
+    },
+    {
+      "line": 463,
+      "level": 1,
+      "title": "INTERCHANGE CHARGES/PROGRAM FEES"
+    }
+  ],
+  "tables": [
+    {
+      "start_line": 25,
+      "end_line": 31,
+      "header": [
+        "Page 1",
+        "Total Amount Submitted",
+        "$463,579.85"
+      ],
+      "row_count": 6,
+      "column_counts": {
+        "3": 6,
+        "2": 1
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 35,
+      "end_line": 59,
+      "header": [
+        "Date",
+        "Submitted Amount",
+        "Third Party Transactions",
+        "Chargebacks/Reversals",
+        "Adjustments",
+        "Fees",
+        "Amount Processed"
+      ],
+      "row_count": 24,
+      "column_counts": {
+        "7": 25
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 77,
+      "end_line": 84,
+      "header": [
+        "Card Type",
+        "Average Ticket",
+        "Items",
+        "Total Gross Sales You Submitted",
+        "",
+        "",
+        "Refunds",
+        "Total Amount You Submitted"
+      ],
+      "row_count": 7,
+      "column_counts": {
+        "8": 8
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 88,
+      "end_line": 115,
+      "header": [
+        "Batch",
+        "Submit Date",
+        "Average Ticket",
+        "Items",
+        "Total Gross Sales You Submitted",
+        "Refunds",
+        "",
+        "",
+        "Total Amount You Submitted"
+      ],
+      "row_count": 27,
+      "column_counts": {
+        "9": 28
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 121,
+      "end_line": 133,
+      "header": [
+        "Date",
+        "Description",
+        "Amount"
+      ],
+      "row_count": 12,
+      "column_counts": {
+        "3": 13
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 148,
+      "end_line": 158,
+      "header": [
+        "Date",
+        "Description",
+        "Amount"
+      ],
+      "row_count": 10,
+      "column_counts": {
+        "3": 11
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 166,
+      "end_line": 168,
+      "header": [
+        "Date",
+        "Reference No.",
+        "Description",
+        "Card Number (Last 4 Digits)",
+        "Amount"
+      ],
+      "row_count": 2,
+      "column_counts": {
+        "5": 2,
+        "1": 1
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 176,
+      "end_line": 178,
+      "header": [
+        "Date",
+        "Description",
+        "Amount"
+      ],
+      "row_count": 2,
+      "column_counts": {
+        "3": 2,
+        "1": 1
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 188,
+      "end_line": 212,
+      "header": [
+        "Type",
+        "Amount"
+      ],
+      "row_count": 24,
+      "column_counts": {
+        "2": 24,
+        "1": 1
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 227,
+      "end_line": 234,
+      "header": [
+        "MC AUTH CONNECTIVITY FEE 101 KILOBYTES AT 0.00224",
+        "Service charges",
+        "- $0.23"
+      ],
+      "row_count": 7,
+      "column_counts": {
+        "3": 8
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 238,
+      "end_line": 282,
+      "header": [
+        "VI DIGITAL COMMERCE SVCS FEE $103,683.08 AT .000075",
+        "Fees",
+        "- $7.78"
+      ],
+      "row_count": 44,
+      "column_counts": {
+        "3": 45
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 286,
+      "end_line": 292,
+      "header": [
+        "DSCVR CNSMR ADJ VCHR PGM 3 RW",
+        "Interchange charges",
+        "$1.49"
+      ],
+      "row_count": 6,
+      "column_counts": {
+        "3": 7
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 307,
+      "end_line": 322,
+      "header": [
+        "DSCVR PSL RTL PP",
+        "Interchange charges",
+        "- $0.60"
+      ],
+      "row_count": 15,
+      "column_counts": {
+        "3": 13,
+        "4": 3
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 326,
+      "end_line": 336,
+      "header": [
+        "Type",
+        "Amount"
+      ],
+      "row_count": 10,
+      "column_counts": {
+        "2": 1,
+        "4": 1,
+        "3": 9
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 340,
+      "end_line": 350,
+      "header": [
+        "Type",
+        "Amount"
+      ],
+      "row_count": 10,
+      "column_counts": {
+        "2": 1,
+        "4": 1,
+        "3": 9
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 376,
+      "end_line": 379,
+      "header": [
+        "Product/Description",
+        "Sales Total",
+        "% Of Sales",
+        "Number of Transactions",
+        "% of Total Transactions",
+        "Interchange/Program Rate",
+        "Cost Per Transaction",
+        "Sub Total",
+        "Total Interchange/Program Charges"
+      ],
+      "row_count": 3,
+      "column_counts": {
+        "9": 3,
+        "8": 1
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 394,
+      "end_line": 414,
+      "header": [
+        "Product/Description",
+        "Sales Total",
+        "% Of Sales",
+        "Number of Transactions",
+        "% of Total Transactions",
+        "Interchange/Program Rate",
+        "Cost Per Transaction",
+        "Interchange/Program Sub Total",
+        "Charges"
+      ],
+      "row_count": 20,
+      "column_counts": {
+        "9": 21
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 418,
+      "end_line": 452,
+      "header": [
+        "VI-NON QUAL CONSUMER CR",
+        "$1,494.59",
+        "1%",
+        "2",
+        "0%",
+        "0.0315",
+        "$0.100",
+        "-",
+        "- $47.28"
+      ],
+      "row_count": 34,
+      "column_counts": {
+        "9": 35
+      },
+      "has_separator_line": false
+    },
+    {
+      "start_line": 467,
+      "end_line": 483,
+      "header": [
+        "Product/Description",
+        "Sales Total",
+        "% Of Sales",
+        "Number of Transactions",
+        "% of Total Transactions",
+        "Interchange/Program Rate",
+        "Cost Per Transaction",
+        "Interchange/Program Sub Total",
+        "Interchange/Program Charges"
+      ],
+      "row_count": 16,
+      "column_counts": {
+        "9": 17
+      },
+      "has_separator_line": false
+    }
+  ],
+  "suggestions": [
+    "Table starting at line 25 has inconsistent column counts {3: 6, 2: 1}.",
+    "Table starting at line 25 is missing a markdown separator row (| --- |).",
+    "Table starting at line 35 is missing a markdown separator row (| --- |).",
+    "Table starting at line 77 is missing a markdown separator row (| --- |).",
+    "Table starting at line 88 is missing a markdown separator row (| --- |).",
+    "Table starting at line 121 is missing a markdown separator row (| --- |).",
+    "Table starting at line 148 is missing a markdown separator row (| --- |).",
+    "Table starting at line 166 has inconsistent column counts {5: 2, 1: 1}.",
+    "Table starting at line 166 is missing a markdown separator row (| --- |).",
+    "Table starting at line 176 has inconsistent column counts {3: 2, 1: 1}.",
+    "Table starting at line 176 is missing a markdown separator row (| --- |).",
+    "Table starting at line 188 has inconsistent column counts {2: 24, 1: 1}.",
+    "Table starting at line 188 is missing a markdown separator row (| --- |).",
+    "Table starting at line 227 is missing a markdown separator row (| --- |).",
+    "Table starting at line 238 is missing a markdown separator row (| --- |).",
+    "Table starting at line 286 is missing a markdown separator row (| --- |).",
+    "Table starting at line 307 has inconsistent column counts {3: 13, 4: 3}.",
+    "Table starting at line 307 is missing a markdown separator row (| --- |).",
+    "Table starting at line 326 has inconsistent column counts {2: 1, 4: 1, 3: 9}.",
+    "Table starting at line 326 is missing a markdown separator row (| --- |).",
+    "Table starting at line 340 has inconsistent column counts {2: 1, 4: 1, 3: 9}.",
+    "Table starting at line 340 is missing a markdown separator row (| --- |).",
+    "Table starting at line 376 has inconsistent column counts {9: 3, 8: 1}.",
+    "Table starting at line 376 is missing a markdown separator row (| --- |).",
+    "Table starting at line 394 is missing a markdown separator row (| --- |).",
+    "Table starting at line 418 is missing a markdown separator row (| --- |).",
+    "Table starting at line 467 is missing a markdown separator row (| --- |)."
+  ]
+}

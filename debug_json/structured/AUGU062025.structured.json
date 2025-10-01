@@ -1,0 +1,571 @@
+{
+  "FEES": [
+    {
+      "page": 5,
+      "headers": [
+        "Column_1",
+        "Column_2",
+        "Column_3",
+        "Column_4"
+      ],
+      "rows": [
+        {
+          "Column_1": "VI-COMMERCIAL SOLUTIONS FEE",
+          "Column_2": ".000100",
+          "Column_3": "TIMES",
+          "Column_4": "$137,031.95"
+        }
+      ],
+      "header_hint": "Amount",
+      "classified_as": "FEES",
+      "header_hint_used": "AMOUNT"
+    },
+    {
+      "page": 5,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "-$298.03"
+        }
+      ],
+      "header_hint": "Total Service Charges",
+      "classified_as": "FEES",
+      "header_hint_used": "TOTAL SERVICE CHARGES"
+    },
+    {
+      "page": 5,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "-$241.06"
+        }
+      ],
+      "header_hint": "Total Fees",
+      "classified_as": "FEES",
+      "header_hint_used": "TOTAL FEES"
+    }
+  ],
+  "INTERCHANGE": [
+    {
+      "page": 5,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "-$5,098.80"
+        }
+      ],
+      "header_hint": "Total Interchange Charges/Program Fees",
+      "classified_as": "INTERCHANGE",
+      "header_hint_used": "TOTAL INTERCHANGE CHARGES/PROGRAM FEES"
+    },
+    {
+      "page": 5,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "-$5,637.89"
+        },
+        {
+          "Column_1": "INTERCHANGE CHARGES/PROGRAM FEESThese are the variable fees charged by Card Organizations for processing transactions. The Interchange /"
+        }
+      ],
+      "header_hint": "Total (Service Charges, Interchange Charges/Program Fees, and Fees)",
+      "classified_as": "INTERCHANGE",
+      "header_hint_used": "TOTAL (SERVICE CHARGES, INTERCHANGE CHARGES/PROGRAM FEES, AND FEES)"
+    }
+  ],
+  "SUMMARY_CARD": [
+    {
+      "page": 2,
+      "headers": [
+        "Card Type",
+        "Average Ticket",
+        "Gross Sales Items",
+        "Gross Sales Amount",
+        "Refunds Items",
+        "Refunds Amount",
+        "Total Items",
+        "Total Amount"
+      ],
+      "rows": [
+        {
+          "Card Type": "Mastercard",
+          "Average Ticket": "$587.22",
+          "Gross Sales Items": "113",
+          "Gross Sales Amount": "$70,765.39",
+          "Refunds Items": "6",
+          "Refunds Amount": "-$886.79",
+          "Total Items": "119",
+          "Total Amount": "$69,878.60"
+        },
+        {
+          "Card Type": "VISA",
+          "Average Ticket": "$500.52",
+          "Gross Sales Items": "403",
+          "Gross Sales Amount": "$217,564.43",
+          "Refunds Items": "19",
+          "Refunds Amount": "-$6,345.66",
+          "Total Items": "422",
+          "Total Amount": "$211,218.77"
+        },
+        {
+          "Card Type": "Discover",
+          "Average Ticket": "$208.28",
+          "Gross Sales Items": "8",
+          "Gross Sales Amount": "$1,959.89",
+          "Refunds Items": "1",
+          "Refunds Amount": "-$85.40",
+          "Total Items": "9",
+          "Total Amount": "$1,874.49"
+        },
+        {
+          "Card Type": "American Express",
+          "Average Ticket": "$1,676.71",
+          "Gross Sales Items": "92",
+          "Gross Sales Amount": "$185,601.44",
+          "Refunds Items": "12",
+          "Refunds Amount": "-$11,223.56",
+          "Total Items": "104",
+          "Total Amount": "$174,377.88"
+        },
+        {
+          "Card Type": "Debit/Atm",
+          "Average Ticket": "$890.02",
+          "Gross Sales Items": "7",
+          "Gross Sales Amount": "$6,230.11",
+          "Refunds Items": "0",
+          "Refunds Amount": "0.00",
+          "Total Items": "7",
+          "Total Amount": "$6,230.11"
+        },
+        {
+          "Card Type": "Total",
+          "Average Ticket": "623",
+          "Gross Sales Items": "$482,121.26",
+          "Gross Sales Amount": "38",
+          "Refunds Items": "-$18,541.41",
+          "Refunds Amount": "661",
+          "Total Items": "$463,579.85",
+          "Total Amount": "SUMMARY BY BATCH"
+        }
+      ],
+      "header_hint": "Summary by Card Type",
+      "classified_as": "SUMMARY_CARD",
+      "header_hint_used": "SUMMARY BY CARD TYPE"
+    }
+  ],
+  "OTHER": [
+    {
+      "page": 1,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "$463,579.85"
+        },
+        {
+          "Column_1": "-$174,377.88"
+        }
+      ],
+      "header_hint": "Total Amount Submitted",
+      "classified_as": "OTHER",
+      "header_hint_used": "TOTAL AMOUNT SUBMITTED"
+    },
+    {
+      "page": 1,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "-$5,637.89"
+        }
+      ],
+      "header_hint": "Chargebacks/Reversals",
+      "classified_as": "OTHER",
+      "header_hint_used": "CHARGEBACKS/REVERSALS"
+    },
+    {
+      "page": 1,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "$283,564.08"
+        }
+      ],
+      "header_hint": "Total Amount Processed",
+      "classified_as": "OTHER",
+      "header_hint_used": "TOTAL AMOUNT PROCESSED"
+    },
+    {
+      "page": 1,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "06/02/25"
+        },
+        {
+          "Column_1": "$16,195.78"
+        },
+        {
+          "Column_1": "-$5,106.57"
+        }
+      ],
+      "header_hint": "Amount",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT"
+    },
+    {
+      "page": 1,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "-$5,637.89"
+        },
+        {
+          "Column_1": "-$5,637.89"
+        },
+        {
+          "Column_1": "$463,579.85"
+        },
+        {
+          "Column_1": "-$174,377.88"
+        }
+      ],
+      "header_hint": "Month End Charge",
+      "classified_as": "OTHER",
+      "header_hint_used": "MONTH END CHARGE"
+    },
+    {
+      "page": 2,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "$587.22"
+        }
+      ],
+      "header_hint": "Amount",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT"
+    },
+    {
+      "page": 2,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "022036270300"
+        },
+        {
+          "Column_1": "06/02/25"
+        },
+        {
+          "Column_1": "$674.82"
+        }
+      ],
+      "header_hint": "Amount",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT"
+    },
+    {
+      "page": 2,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "06/02/25"
+        },
+        {
+          "Column_1": "-$5,106.57"
+        },
+        {
+          "Column_1": "06/03/25"
+        },
+        {
+          "Column_1": "-$3,214.83"
+        },
+        {
+          "Column_1": "06/05/25"
+        },
+        {
+          "Column_1": "-$8,059.80"
+        },
+        {
+          "Column_1": "06/06/25"
+        },
+        {
+          "Column_1": "-$346.12"
+        },
+        {
+          "Column_1": "06/09/25"
+        },
+        {
+          "Column_1": "-$2,802.65"
+        },
+        {
+          "Column_1": "06/10/25"
+        },
+        {
+          "Column_1": "-$5,271.51"
+        },
+        {
+          "Column_1": "06/11/25"
+        },
+        {
+          "Column_1": "$447.63"
+        },
+        {
+          "Column_1": "06/12/25"
+        },
+        {
+          "Column_1": "-$7,987.85"
+        },
+        {
+          "Column_1": "06/13/25"
+        },
+        {
+          "Column_1": "-$3,050.07"
+        },
+        {
+          "Column_1": "06/16/25"
+        },
+        {
+          "Column_1": "-$6,208.15"
+        },
+        {
+          "Column_1": "06/17/25"
+        },
+        {
+          "Column_1": "-$2,610.03"
+        }
+      ],
+      "header_hint": "Amount",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT"
+    },
+    {
+      "page": 3,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "06/18/25"
+        },
+        {
+          "Column_1": "-$2,296.34"
+        },
+        {
+          "Column_1": "06/19/25"
+        },
+        {
+          "Column_1": "-$11,314.13"
+        },
+        {
+          "Column_1": "06/20/25"
+        },
+        {
+          "Column_1": "-$3,162.06"
+        },
+        {
+          "Column_1": "06/23/25"
+        },
+        {
+          "Column_1": "-$5,186.62"
+        },
+        {
+          "Column_1": "06/24/25"
+        },
+        {
+          "Column_1": "-$5,046.13"
+        },
+        {
+          "Column_1": "06/25/25"
+        },
+        {
+          "Column_1": "-$479.91"
+        },
+        {
+          "Column_1": "06/26/25"
+        },
+        {
+          "Column_1": "-$4,408.50"
+        },
+        {
+          "Column_1": "06/27/25"
+        },
+        {
+          "Column_1": "-$26,102.39"
+        },
+        {
+          "Column_1": "06/30/25"
+        },
+        {
+          "Column_1": "-$72,171.85"
+        }
+      ],
+      "header_hint": "Amount",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT"
+    },
+    {
+      "page": 3,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "(Last 4 Digits)"
+        }
+      ],
+      "header_hint": "Description",
+      "classified_as": "OTHER",
+      "header_hint_used": "DESCRIPTION"
+    },
+    {
+      "page": 3,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "The amounts credited to, or deducted from, your account to resolve processing and billing discrepancies."
+        }
+      ],
+      "header_hint": "No Chargebacks/Reversals for this Statement Period",
+      "classified_as": "OTHER",
+      "header_hint_used": "NO CHARGEBACKS/REVERSALS FOR THIS STATEMENT PERIOD"
+    },
+    {
+      "page": 3,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "services."
+        }
+      ],
+      "header_hint": "Amount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT CHARGED TO AUTHORIZE, PROCESS AND SETTLE CARD TRANSACTIONS, ALONG WITH TRANSACTION-BASED AND/"
+    },
+    {
+      "page": 3,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "-$2.63"
+        }
+      ],
+      "header_hint": "Amount",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT"
+    },
+    {
+      "page": 4,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "services."
+        }
+      ],
+      "header_hint": "Amount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT CHARGED TO AUTHORIZE, PROCESS AND SETTLE CARD TRANSACTIONS, ALONG WITH TRANSACTION-BASED AND/"
+    },
+    {
+      "page": 5,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "services."
+        }
+      ],
+      "header_hint": "Amount charged to authorize, process and settle card transactions, along with transaction-based and/or fixed amounts charged for specific card processing",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT CHARGED TO AUTHORIZE, PROCESS AND SETTLE CARD TRANSACTIONS, ALONG WITH TRANSACTION-BASED AND/"
+    },
+    {
+      "page": 5,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "-$0.04"
+        }
+      ],
+      "header_hint": "Amount",
+      "classified_as": "OTHER",
+      "header_hint_used": "AMOUNT"
+    },
+    {
+      "page": 5,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "$230.24"
+        }
+      ],
+      "header_hint": "Charges",
+      "classified_as": "OTHER",
+      "header_hint_used": "CHARGES"
+    },
+    {
+      "page": 6,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "$290.29"
+        }
+      ],
+      "header_hint": "Charges",
+      "classified_as": "OTHER",
+      "header_hint_used": "CHARGES"
+    },
+    {
+      "page": 7,
+      "headers": [
+        "Column_1"
+      ],
+      "rows": [
+        {
+          "Column_1": "$1,293.63"
+        }
+      ],
+      "header_hint": "Charges",
+      "classified_as": "OTHER",
+      "header_hint_used": "CHARGES"
+    }
+  ]
+}

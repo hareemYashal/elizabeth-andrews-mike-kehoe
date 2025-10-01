@@ -1,0 +1,17 @@
+{
+  "structured_coverage": {
+    "fees_rows": 3,
+    "interchange_rows": 2,
+    "card_summary_rows": 6,
+    "total_structured_rows": 11
+  },
+  "markdown_coverage": {
+    "has_fees_section": true,
+    "has_interchange_section": true,
+    "has_card_section": true,
+    "total_length": 47075
+  },
+  "recommendations": [
+    "\u2705 Both parsers have good coverage - hybrid approach optimal"
+  ]
+}

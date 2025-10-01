@@ -1,0 +1,13 @@
+{
+  "total_tables": 25,
+  "total_rows": 69,
+  "section_counts": {
+    "FEES": 3,
+    "INTERCHANGE": 2,
+    "SUMMARY_CARD": 1,
+    "OTHER": 19
+  },
+  "suggestions": [
+    "\u2705 All tables extracted successfully"
+  ]
+}
