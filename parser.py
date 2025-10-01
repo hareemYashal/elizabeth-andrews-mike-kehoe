@@ -40,14 +40,181 @@ USE_LLM_POST = False     # Disable post-processor; rely on LLM for clean output
 # Initialize LlamaParse
 parser = LlamaParse(result_type="markdown")
 
-# Load the bank statement PDF from input_pdfs
-input_pdf_name = "ALPH072025.pdf"
-file_name = os.path.join("input_pdfs", input_pdf_name)
-extra_info = {"file_name": file_name}
+# Load the bank statement PDFs from input_pdfs
+import glob
 
-# Parse the PDF
-with open(file_name, "rb") as f:
-    documents = parser.load_data(f, extra_info=extra_info)
+# Specific PDFs to process
+target_pdfs = ["ALPH072025.pdf", "AUGU062025.pdf", "COLU052025.pdf", "COLU062025.pdf", "MACO052025.pdf"]
+
+# Find all PDF files in input_pdfs directory
+pdf_files = glob.glob(os.path.join("input_pdfs", "*.pdf"))
+
+if not pdf_files:
+    print("No PDF files found in input_pdfs directory.")
+    print("Please add a PDF file to the input_pdfs directory and run the script again.")
+    exit(1)
+
+# Filter to only process the target PDFs
+target_files = []
+for target in target_pdfs:
+    target_path = os.path.join("input_pdfs", target)
+    if os.path.exists(target_path):
+        target_files.append(target_path)
+    else:
+        print(f"⚠️ Warning: {target} not found in input_pdfs directory")
+
+if not target_files:
+    print("No target PDF files found.")
+    exit(1)
+
+print(f"Processing {len(target_files)} PDF files: {[os.path.basename(f) for f in target_files]}")
+
+def parse_filename_for_metadata(pdf_path):
+    filename = os.path.basename(pdf_path)
+    base = os.path.splitext(filename)[0]
+    # Try MMYYYY at end
+    m = re.search(r"(\d{2})(\d{4})$", base)
+    date_val = ""
+    if m:
+        mm, yyyy = m.groups()
+        # Use the last day of the month instead of first day
+        if mm in ['01', '03', '05', '07', '08', '10', '12']:
+            last_day = '31'
+        elif mm in ['04', '06', '09', '11']:
+            last_day = '30'
+        elif mm == '02':
+            # Simple leap year check
+            year = int(yyyy)
+            if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+                last_day = '29'
+            else:
+                last_day = '28'
+        else:
+            last_day = '30'  # fallback
+        date_val = f"{mm}/{last_day}/{yyyy}"
+    return {
+        "Account Name": base.upper(),
+        "Account ID": "",
+        "Date": date_val,
+        "Account Holder": "",
+        "Filename": filename,
+        "Account Short ID": "",
+        "Gateway": "",
+        "Account Type": "",
+        "Processor": "",
+        "User Permissions": ""
+    }
+
+
+def process_single_pdf(documents, input_pdf_name, file_path):
+    """Process a single PDF and save results to Excel."""
+
+    metadata = parse_filename_for_metadata(file_path)
+
+    print("🔄 Extracting account information from document header...")
+    account_info = extract_account_info_from_header(documents[0].text)
+    metadata.update(account_info)
+
+    statement_text = documents[0].text
+    if "Statement Period:" in statement_text:
+        import re
+
+        period_match = re.search(
+            r"Statement Period:\s*(\d{2}/\d{2}/\d{2})\s*-\s*(\d{2}/\d{2}/\d{2})",
+            statement_text,
+        )
+        if period_match:
+            _, end_date = period_match.groups()
+            month, day, year = end_date.split("/")
+            year = f"20{year}" if int(year) < 50 else f"19{year}"
+            metadata["Date"] = f"{month}/{day}/{year}"
+            print(f"   ✅ Updated Date from statement period: {metadata['Date']}")
+
+    print(f"   ✅ Account Name: {metadata.get('Account Name', 'Unknown')}")
+    print(f"   ✅ Account Holder: {metadata.get('Account Holder', 'Unknown')}")
+    print(f"   ✅ Date: {metadata.get('Date', 'Unknown')}")
+
+    sections_markdown, statement_data = build_statement_from_documents(documents)
+
+    print("\n🔍 DEBUGGING: Looking for Summary by Card Type in raw markdown...")
+    found_summary = False
+    for doc in documents:
+        text = doc.text
+        if "SUMMARY BY CARD TYPE" not in text:
+            continue
+
+        found_summary = True
+        start = text.find("# SUMMARY BY CARD TYPE")
+        if start == -1:
+            continue
+
+        end = text.find("\n# ", start + 1)
+        if end == -1:
+            end = len(text)
+
+        summary_section = text[start:end]
+        print("📋 Found Summary by Card Type section:")
+        print(summary_section[:1000])
+        if len(summary_section) > 1000:
+            print("...")
+        break
+
+    if not found_summary:
+        print("❌ No 'SUMMARY BY CARD TYPE' found in any document")
+
+    print("\n" + "=" * 50 + "\n")
+
+    fees_rows = []
+    interchange_rows = []
+    summary_card_rows = []
+
+    if sections_markdown.get("FEES"):
+        fees_rows = process_section_with_llm("FEES", sections_markdown["FEES"], metadata)
+        fees_rows = populate_missing_metadata(fees_rows, metadata)
+        validate_extracted_data(fees_rows, "FEES")
+        print("   🔍 FEES rows after processing:")
+        for i, row in enumerate(fees_rows[:5]):
+            print(
+                f"     {i+1}. '{row.get('Statement Description', '')[:50]}...' | Fee Type: '{row.get('Fee Type', '')}'"
+            )
+
+    if sections_markdown.get("INTERCHANGE"):
+        interchange_rows = process_section_with_llm("INTERCHANGE", sections_markdown["INTERCHANGE"], metadata)
+        interchange_rows = populate_missing_metadata(interchange_rows, metadata)
+        validate_extracted_data(interchange_rows, "INTERCHANGE")
+
+    if sections_markdown.get("SUMMARY_CARD"):
+        summary_card_rows = process_section_with_llm("SUMMARY_CARD", sections_markdown["SUMMARY_CARD"], metadata)
+        summary_card_rows = populate_missing_metadata(summary_card_rows, metadata)
+        validate_extracted_data(summary_card_rows, "SUMMARY_CARD")
+
+    print(
+        "\n📊 SECTION PROCESSING COMPLETE:\n"
+        f"   📥 FEES rows: {len(fees_rows)} | INTERCHANGE rows: {len(interchange_rows)} | "
+        f"SUMMARY_CARD rows: {len(summary_card_rows)}"
+    )
+
+    all_rows = fees_rows + summary_card_rows
+    print("\n🔄 Post-processing descriptions, fee types, and fee signs...")
+    all_rows = post_process_rows_with_llm(all_rows, metadata)
+    print(f"   ✅ Final row count (FEES + SUMMARY_CARD): {len(all_rows)}")
+
+    output_excel = f"output_excels/{input_pdf_name.replace('.pdf', '_tables.xlsx')}"
+    save_extracted_data_to_excel(all_rows, output_excel)
+
+
+def process_all_pdfs():
+    for file_path in target_files:
+        input_pdf_name = os.path.basename(file_path)
+
+        print(f"\n{'='*60}")
+        print(f"Processing PDF: {input_pdf_name}")
+        print(f"{'='*60}")
+
+        with open(file_path, "rb") as f:
+            documents = parser.load_data(f, extra_info={"file_name": file_path})
+
+        process_single_pdf(documents, input_pdf_name, file_path)
 
 # Function to parse markdown tables
 def parse_markdown_table(text):
@@ -64,25 +231,6 @@ def parse_markdown_table(text):
     return headers, rows
 
 # Initialize data structures for the statement
-statement_data = {
-    "header": {
-        "merchant_name": "JOHNSTONE SUPPLY-GA_ALPH",
-        "store_number": "5",
-        "merchant_number": "191027606885",
-        "statement_period": "07/01/25 - 07/31/25",
-        "address": "204120 Dublin Blvd, Dublin, CA 94568",
-        "customer_service_phone": "1-800-853-1499",
-        "customer_service_website": "",
-    },
-    "summary": {},
-    "summary_by_day": [],
-    "summary_by_card_type": [],
-    "third_party_transactions": [],
-    "fees": [],
-    "interchange_charges": [],
-}
-
-# Process each document
 def _extract_section_block(full_text, header):
     try:
         start_idx = full_text.find(header)
@@ -100,117 +248,142 @@ def _extract_section_block(full_text, header):
         return ""
 
 def _collect_sections_markdown(full_text):
-    """
-    Collect FEES-like and INTERCHANGE blocks robustly, case-insensitive, across header variants.
-    Returns dict: {"FEES": concatenated_md, "INTERCHANGE": concatenated_md}
-    """
+    """Collect FEES/INTERCHANGE/SUMMARY sections from a markdown document."""
+
     import re as _re
+
     sections = {"FEES": [], "INTERCHANGE": [], "SUMMARY_CARD": []}
-    # Find all headers and their positions
-    headers = [(m.group(0), m.start()) for m in _re.finditer(r"^#{1,3}\s.*$", full_text, _re.MULTILINE)]
-    # Append a sentinel end
+
+    headers = [
+        (match.group(0), match.start())
+        for match in _re.finditer(r"^#{1,3}\s.*$", full_text, _re.MULTILINE)
+    ]
     headers.append(("__END__", len(full_text)))
     
-    # Debug: print found headers
-    print(f"   🔍 Found headers: {[h[0] for h in headers[:10]]}")  # Show first 10 headers
-    # Iterate pairs
-    for i in range(len(headers)-1):
+    print(f"   🔍 Found headers: {[h[0] for h in headers[:10]]}")
+
+    for i in range(len(headers) - 1):
         header_line, start = headers[i]
-        _, end = headers[i+1]
+        _, end = headers[i + 1]
         block = full_text[start:end]
         header_upper = header_line.upper()
-        if any(k in header_upper for k in ["INTERCHANGE", "PROGRAM FEE"]):
+
+        if any(keyword in header_upper for keyword in ["INTERCHANGE", "PROGRAM FEE"]):
             sections["INTERCHANGE"].append(block)
             print(f"   ✅ Matched INTERCHANGE: {header_line}")
-        elif any(k in header_upper for k in ["SUMMARY BY CARD TYPE", "SUMMARY BY CARD", "CARD TYPE"]) or "SUMMARY" in header_upper and "CARD" in header_upper:
+        elif (
+            any(keyword in header_upper for keyword in ["SUMMARY BY CARD TYPE", "SUMMARY BY CARD", "CARD TYPE"])
+            or ("SUMMARY" in header_upper and "CARD" in header_upper)
+        ):
             sections["SUMMARY_CARD"].append(block)
             print(f"   ✅ Matched SUMMARY_CARD: {header_line}")
-        elif any(k in header_upper for k in ["FEE", "FEES", "SERVICE CHARGE", "DISCOUNT"]):
-            # Exclude obvious unrelated like "SUMMARY"
+        elif any(keyword in header_upper for keyword in ["FEE", "FEES", "SERVICE CHARGE", "DISCOUNT"]):
             if "SUMMARY" not in header_upper and "THIRD PARTY" not in header_upper and "CHARGEBACK" not in header_upper:
                 sections["FEES"].append(block)
                 print(f"   ✅ Matched FEES: {header_line}")
-    return {"FEES": "\n\n".join(sections["FEES"]).strip(), "INTERCHANGE": "\n\n".join(sections["INTERCHANGE"]).strip(), "SUMMARY_CARD": "\n\n".join(sections["SUMMARY_CARD"]).strip()}
 
-sections_markdown = {"FEES": "", "INTERCHANGE": "", "SUMMARY_CARD": ""}
+    return {
+        "FEES": "\n\n".join(sections["FEES"]).strip(),
+        "INTERCHANGE": "\n\n".join(sections["INTERCHANGE"]).strip(),
+        "SUMMARY_CARD": "\n\n".join(sections["SUMMARY_CARD"]).strip(),
+    }
 
-for doc in documents:
-    text = doc.text
-    lines = text.split("\n")
-    
-    # Collect sections from EVERY document
-    sections_markdown_block = _collect_sections_markdown(text)
-    for section_name in ["FEES", "INTERCHANGE", "SUMMARY_CARD"]:
-        if sections_markdown_block.get(section_name):
-            sections_markdown[section_name] += ("\n\n" + sections_markdown_block[section_name]).strip()
-            print(f"   🔍 Found {section_name} section: {len(sections_markdown_block[section_name])} chars")
 
-    # Extract Summary Section
-    if "# SUMMARY" in text:
-        headers, rows = parse_markdown_table(text)
-        for row in rows:
-            if len(row) >= 3:
-                statement_data["summary"][row[0]] = {
-                    "description": row[1],
-                    "amount": row[2]
-                }
+def build_statement_from_documents(documents):
+    sections_markdown = {"FEES": "", "INTERCHANGE": "", "SUMMARY_CARD": ""}
+    statement_data = {
+        "summary": {},
+        "summary_by_card_type": [],
+        "third_party_transactions": [],
+        "fees": [],
+        "interchange_charges": [],
+    }
 
-    # Extract Summary by Card Type
-    if "# SUMMARY BY CARD TYPE" in text:
-        headers, rows = parse_markdown_table(text)
-        for row in rows:
-            if len(row) >= 8:
-                statement_data["summary_by_card_type"].append({
-                    "card_type": row[0],
-                    "average_ticket": row[1],
-                    "items": row[2],
-                    "gross_sales": row[3],
-                    "refunds_items": row[4],
-                    "refunds_amount": row[5],
-                    "total_items": row[6],
-                    "total_amount": row[7],
-                })
+    for doc in documents:
+        text = doc.text
 
-    # Extract Third Party Transactions
-    if "# THIRD PARTY TRANSACTIONS" in text:
-        headers, rows = parse_markdown_table(text)
-        for row in rows:
-            if len(row) >= 3:
-                statement_data["third_party_transactions"].append({
-                    "date": row[0],
-                    "description": row[1],
-                    "amount": row[2],
-                })
+        block_sections = _collect_sections_markdown(text)
+        for name, content in block_sections.items():
+            cleaned_content = content.strip()
+            if not cleaned_content:
+                continue
+            if sections_markdown[name]:
+                sections_markdown[name] = (
+                    sections_markdown[name] + "\n\n" + cleaned_content
+                ).strip()
+            else:
+                sections_markdown[name] = cleaned_content
+            print(f"   🔍 Found {name} section: {len(cleaned_content)} chars")
 
-    # Extract Fees
-    if "# FEES" in text:
-        headers, rows = parse_markdown_table(text)
-        for row in rows:
-            if len(row) >= 3:
-                statement_data["fees"].append({
-                    "description": row[0],
-                    "type": row[1],
-                    "amount": row[2],
-                })
-        # Section collection now happens at document level above
+        if "# SUMMARY" in text:
+            headers, rows = parse_markdown_table(text)
+            for row in rows:
+                if len(row) >= 3:
+                    statement_data["summary"][row[0]] = {
+                        "description": row[1],
+                        "amount": row[2],
+                    }
 
-    # Extract Interchange Charges
-    if "# INTERCHANGE CHARGES/PROGRAM FEES" in text or "INTERCHANGE" in text:
-        headers, rows = parse_markdown_table(text)
-        for row in rows:
-            if len(row) >= 8:
-                statement_data["interchange_charges"].append({
-                    "product_description": row[0],
-                    "sales_total": row[1],
-                    "percent_of_sales": row[2],
-                    "number_of_transactions": row[3],
-                    "percent_of_total_transactions": row[4],
-                    "interchange_rate": row[5],
-                    "cost_per_transaction": row[6],
-                    "sub_total": row[7],
-                    "total_charges": row[8] if len(row) > 8 else "",
-                })
-        # Section collection now happens at document level above
+        if "# SUMMARY BY CARD TYPE" in text:
+            headers, rows = parse_markdown_table(text)
+            for row in rows:
+                if len(row) >= 8:
+                    statement_data["summary_by_card_type"].append(
+                        {
+                            "card_type": row[0],
+                            "average_ticket": row[1],
+                            "items": row[2],
+                            "gross_sales": row[3],
+                            "refunds_items": row[4],
+                            "refunds_amount": row[5],
+                            "total_items": row[6],
+                            "total_amount": row[7],
+                        }
+                    )
+
+        if "# THIRD PARTY TRANSACTIONS" in text:
+            headers, rows = parse_markdown_table(text)
+            for row in rows:
+                if len(row) >= 3:
+                    statement_data["third_party_transactions"].append(
+                        {
+                            "date": row[0],
+                            "description": row[1],
+                            "amount": row[2],
+                        }
+                    )
+
+        if "# FEES" in text:
+            headers, rows = parse_markdown_table(text)
+            for row in rows:
+                if len(row) >= 3:
+                    statement_data["fees"].append(
+                        {
+                            "description": row[0],
+                            "type": row[1],
+                            "amount": row[2],
+                        }
+                    )
+
+        if "# INTERCHANGE CHARGES/PROGRAM FEES" in text or "INTERCHANGE" in text:
+            headers, rows = parse_markdown_table(text)
+            for row in rows:
+                if len(row) >= 8:
+                    statement_data["interchange_charges"].append(
+                        {
+                            "product_description": row[0],
+                            "sales_total": row[1],
+                            "percent_of_sales": row[2],
+                            "number_of_transactions": row[3],
+                            "percent_of_total_transactions": row[4],
+                            "interchange_rate": row[5],
+                            "cost_per_transaction": row[6],
+                            "sub_total": row[7],
+                            "total_charges": row[8] if len(row) > 8 else "",
+                        }
+                    )
+
+    return sections_markdown, statement_data
 
 # Function to format and display the statement
 def display_statement(data):
@@ -392,36 +565,53 @@ def extract_account_info_from_header(full_text):
             'Account Holder': 'Corporate'
         }
 
-def parse_filename_for_metadata(pdf_path):
-    filename = os.path.basename(pdf_path)
-    base = os.path.splitext(filename)[0]
-    # Try MMYYYY at end
-    m = re.search(r"(\d{2})(\d{4})$", base)
-    date_val = ""
-    if m:
-        mm, yyyy = m.groups()
-        # Use the last day of the month instead of first day
-        if mm in ['01', '03', '05', '07', '08', '10', '12']:
-            last_day = '31'
-        elif mm in ['04', '06', '09', '11']:
-            last_day = '30'
-        elif mm == '02':
-            # Simple leap year check
-            year = int(yyyy)
-            if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
-                last_day = '29'
-            else:
-                last_day = '28'
+def populate_missing_metadata(rows, metadata):
+    """Populate missing metadata fields in all rows"""
+    for row in rows:
+        # Fill in missing metadata fields
+        for key, value in metadata.items():
+            if key not in row or row[key] is None or row[key] == "":
+                row[key] = value
+        
+        # Ensure all required fields have default values
+        if row.get('Count #') is None:
+            row['Count #'] = 1
+        if row.get('Amount $') is None:
+            row['Amount $'] = 0
+        if row.get('Rate %') is None:
+            row['Rate %'] = 0
+        if row.get('Rate $') is None:
+            row['Rate $'] = 0
+        if row.get('Fees $') is None:
+            row['Fees $'] = 0
+    
+    return rows
+
+def validate_extracted_data(rows, section_name):
+    """Validate that all required fields are populated"""
+    if not rows:
+        return
+    
+    required_fields = ['Statement Description', 'Brand', 'Fee Type', 'Count #', 'Amount $', 'Rate %', 'Rate $', 'Fees $']
+    missing_counts = {field: 0 for field in required_fields}
+    
+    for row in rows:
+        for field in required_fields:
+            if field not in row or row[field] is None or row[field] == "":
+                missing_counts[field] += 1
+    
+    print(f"   🔍 {section_name} validation:")
+    for field, count in missing_counts.items():
+        if count > 0:
+            print(f"     ⚠️ {field}: {count} missing values")
         else:
-            last_day = '30'  # fallback
-        date_val = f"{mm}/{last_day}/{yyyy}"
-    return {
-        "Account Name": base.upper(),
-        "Account ID": "",
-        "Date": date_val,
-        "Account Holder": "",
-        "Filename": filename,
-    }
+            print(f"     ✅ {field}: All values present")
+
+    total_missing = sum(missing_counts.values())
+    if total_missing > 0:
+        print(f"     ⚠️ Total missing values: {total_missing}")
+    else:
+        print(f"     ✅ All required fields populated")
 
 def to_rows(statement_data, metadata):
     rows = []
@@ -814,26 +1004,7 @@ def merge_duplicate_rows(rows):
 # Display the structured statement (console + markdown) - COMMENTED OUT FOR DEBUGGING
 # display_statement(statement_data)
 
-# DEBUG: Show Summary by Card Type from raw markdown first
-print("\n🔍 DEBUGGING: Looking for Summary by Card Type in raw markdown...")
-for doc in documents:
-    text = doc.text
-    if "SUMMARY BY CARD TYPE" in text:
-        # Extract just the summary table
-        start = text.find("# SUMMARY BY CARD TYPE")
-        if start != -1:
-            # Find the end (next # header or end of text)
-            end = text.find("\n# ", start + 1)
-            if end == -1:
-                end = len(text)
-            summary_section = text[start:end]
-            print("📋 Found Summary by Card Type section:")
-            print(summary_section[:1000])  # Show first 1000 chars
-            print("..." if len(summary_section) > 1000 else "")
-            break
-    else:
-        print("❌ No 'SUMMARY BY CARD TYPE' found in this document")
-print("\n" + "="*50 + "\n")
+# DEBUG helper moved into process_single_pdf
 
 # New section-by-section LLM processing approach
 def process_section_with_llm(section_name, section_markdown, metadata):
@@ -851,6 +1022,16 @@ def process_section_with_llm(section_name, section_markdown, metadata):
         CRITICAL: Extract ONLY data rows, NO headers, NO dashes, NO formatting lines.
         MANDATORY: Every row MUST have a non-empty 'Statement Description'. If unclear, skip the row.
         
+        REQUIRED FIELDS - ALL must be populated:
+        - Statement Description: REQUIRED (never empty)
+        - Brand: REQUIRED (infer from description)
+        - Fee Type: REQUIRED (categorize as "Fees", "Interchange Charges", or "Service Charges")
+        - Count #: REQUIRED (extract transaction count, use 1 if not specified)
+        - Amount $: REQUIRED (extract transaction volume, use 0 if not specified)
+        - Rate %: REQUIRED (extract percentage rate, use 0 if not specified)
+        - Rate $: REQUIRED (extract fixed rate, use 0 if not specified)
+        - Fees $: REQUIRED (extract actual fee amount, use 0 if not specified)
+        
         Expected columns from FEES table (handle BOTH formats):
         
         FORMAT 1 (Simple table - Fee Type embedded in description):
@@ -867,18 +1048,30 @@ def process_section_with_llm(section_name, section_markdown, metadata):
         - Extract rate patterns like "0.0014 TIMES", "0.0003", etc. → put in 'Rate %' (remove "TIMES")
         - Extract dollar amounts like "$80502.99", "$21929.53" → put in 'Amount $' (remove "$")
         - Clean description by removing extracted rate/amount → 'Statement Description'
-        
-        - Amount column (if separate) → 'Fees $' (actual fee amount)
+        - Extract transaction counts from descriptions or use 1 as default
+        - Extract fixed rates from descriptions or use 0 as default
         
         Brand inference: VI/VISA→VISA, MC/MASTERCARD→MASTERCARD, DS/DISCOVER→DISCOVER, AMEX→American Express, others→DEBIT
         
         EXCLUDE: Third Party, Misc Adjustment, Chargebacks, headers, dashes, formatting
+        
+        JSON FORMAT: Return {{"rows": [{{"Statement Description": "...", "Brand": "...", "Fee Type": "...", "Count #": 1, "Amount $": 0, "Rate %": 0, "Rate $": 0, "Fees $": 0, ...}}]}}
         """
     elif section_name == "INTERCHANGE":
         system_prompt = """
         Extract INTERCHANGE CHARGES table data into clean 18-column JSON format.
         CRITICAL: Extract ONLY data rows, NO headers, NO dashes, NO formatting lines.
         MANDATORY: Every row MUST have a non-empty 'Statement Description'. If unclear, skip the row.
+        
+        REQUIRED FIELDS - ALL must be populated:
+        - Statement Description: REQUIRED (never empty)
+        - Brand: REQUIRED (infer from description)
+        - Fee Type: REQUIRED (categorize as "Fees" or "Interchange Charges")
+        - Count #: REQUIRED (extract transaction count, use 1 if not specified)
+        - Amount $: REQUIRED (extract transaction volume, use 0 if not specified)
+        - Rate %: REQUIRED (extract percentage rate, use 0 if not specified)
+        - Rate $: REQUIRED (extract fixed rate, use 0 if not specified)
+        - Fees $: REQUIRED (extract actual fee amount, use 0 if not specified)
         
         Expected columns from INTERCHANGE table:
         - Product/Description → FIRST extract embedded rate/amount, THEN clean to 'Statement Description'
@@ -912,12 +1105,24 @@ def process_section_with_llm(section_name, section_markdown, metadata):
         EXCLUDE: headers, dashes, formatting
         
         IMPORTANT: Include ALL data rows, even if Sub Total=0.00, as they contain valid transaction data (Count #, Rate %, Rate $, Amount $)
+        
+        JSON FORMAT: Return {{"rows": [{{"Statement Description": "...", "Brand": "...", "Fee Type": "...", "Count #": 1, "Amount $": 0, "Rate %": 0, "Rate $": 0, "Fees $": 0, ...}}]}}
         """
     else:  # SUMMARY_CARD
         system_prompt = """
         Extract SUMMARY BY CARD TYPE into Gross Sales and Refunds rows.
         CRITICAL: Extract ONLY data rows, NO headers, NO dashes, NO formatting lines.
         MANDATORY: Every row MUST have a non-empty 'Statement Description'. If unclear, skip the row.
+        
+        REQUIRED FIELDS - ALL must be populated:
+        - Statement Description: REQUIRED (never empty)
+        - Brand: REQUIRED (infer from card type)
+        - Fee Type: REQUIRED ("Gross Sales" or "Refunds")
+        - Count #: REQUIRED (extract transaction count, use 1 if not specified)
+        - Amount $: REQUIRED (extract transaction volume, use 0 if not specified)
+        - Rate %: REQUIRED (use 0 for summary rows)
+        - Rate $: REQUIRED (use 0 for summary rows)
+        - Fees $: REQUIRED (use 0 for summary rows)
         
         Expected columns from SUMMARY BY CARD TYPE table:
         - Card Type → 'Brand' (apply brand inference)
@@ -949,6 +1154,8 @@ def process_section_with_llm(section_name, section_markdown, metadata):
         - All others (DEBIT, etc.) → "DEBIT"
         
         EXCLUDE: Total rows, headers, dashes, formatting lines
+        
+        JSON FORMAT: Return {{"rows": [{{"Statement Description": "Gross Sales", "Brand": "...", "Fee Type": "Gross Sales", "Count #": 1, "Amount $": 0, "Rate %": 0, "Rate $": 0, "Fees $": 0, ...}}]}}
         """
     
     prompt = ChatPromptTemplate.from_messages([
@@ -1002,225 +1209,10 @@ def process_section_with_llm(section_name, section_markdown, metadata):
         print(f"   ❌ {section_name}: Error - {e}")
         return []
 
-# Process each section individually
-metadata = parse_filename_for_metadata(file_name)
+def main():
+    process_all_pdfs()
+    print("\n🎉 All PDFs processed successfully!")
+    print("📁 Check the output_excels/ directory for the generated Excel files.")
 
-# Extract Account Name and Account Holder from document header
-print("🔄 Extracting account information from document header...")
-account_info = extract_account_info_from_header(documents[0].text)
-metadata.update(account_info)
-
-# Extract end date from statement period
-statement_text = documents[0].text
-if "Statement Period:" in statement_text:
-    import re
-    period_match = re.search(r"Statement Period:\s*(\d{2}/\d{2}/\d{2})\s*-\s*(\d{2}/\d{2}/\d{2})", statement_text)
-    if period_match:
-        start_date, end_date = period_match.groups()
-        # Convert 2-digit year to 4-digit year
-        end_parts = end_date.split('/')
-        if len(end_parts) == 3:
-            month, day, year = end_parts
-            if int(year) < 50:  # Assume 20xx for years < 50
-                year = f"20{year}"
-            else:  # Assume 19xx for years >= 50
-                year = f"19{year}"
-            metadata["Date"] = f"{month}/{day}/{year}"
-            print(f"   ✅ Updated Date from statement period: {metadata['Date']}")
-
-print(f"   ✅ Account Name: {metadata.get('Account Name', 'Unknown')}")
-print(f"   ✅ Account Holder: {metadata.get('Account Holder', 'Unknown')}")
-print(f"   ✅ Date: {metadata.get('Date', 'Unknown')}")
-
-fees_rows = []
-interchange_rows = []
-summary_card_rows = []
-
-# FEES only (these will be the final rows)
-if sections_markdown.get("FEES"):
-    fees_rows = process_section_with_llm("FEES", sections_markdown["FEES"], metadata)
-    print(f"   🔍 FEES rows after processing:")
-    for i, row in enumerate(fees_rows[:5]):  # Show first 5 rows
-        print(f"     {i+1}. '{row.get('Statement Description', '')[:50]}...' | Fee Type: '{row.get('Fee Type', '')}'")
-
-# INTERCHANGE (used only to enrich FEES rows)
-if sections_markdown.get("INTERCHANGE"):
-    interchange_rows = process_section_with_llm("INTERCHANGE", sections_markdown["INTERCHANGE"], metadata)
-
-# SUMMARY BY CARD TYPE (added at the end)
-if sections_markdown.get("SUMMARY_CARD"):
-    summary_card_rows = process_section_with_llm("SUMMARY_CARD", sections_markdown["SUMMARY_CARD"], metadata)
-
-print(f"\n📊 SECTION PROCESSING COMPLETE:")
-print(f"   📥 FEES rows: {len(fees_rows)} | INTERCHANGE rows: {len(interchange_rows)} | SUMMARY_CARD rows: {len(summary_card_rows)}")
-
-# Debug: Print Summary by Card Type content
-print(f"\n🔍 DEBUG - SUMMARY_CARD markdown content:")
-print(f"   Length: {len(sections_markdown.get('SUMMARY_CARD', ''))}")
-if sections_markdown.get('SUMMARY_CARD'):
-    print(f"   Content preview: {sections_markdown['SUMMARY_CARD'][:500]}...")
-else:
-    print("   No SUMMARY_CARD content found!")
-
-# Build a lookup from INTERCHANGE by canonical description for enrichment
-def _canon_desc(s):
-    s = str(s or '').upper().strip()
-    s = re.sub(r"\s*\(.*?\)\s*", "", s)  # drop parentheticals
-    s = re.sub(r"\s+", " ", s)
-    return s
-
-inter_by_desc = {}
-for r in interchange_rows:
-    key = _canon_desc(r.get('Statement Description'))
-    if key and key not in inter_by_desc:
-        inter_by_desc[key] = r
-    # Also index by condensed alphanumeric key to catch minor punctuation/spacing differences
-    condensed = re.sub(r"[^A-Z0-9]", "", key)
-    if condensed and condensed not in inter_by_desc:
-        inter_by_desc[condensed] = r
-
-# Token-based helpers for fuzzy description matching
-def _normalize_brand_token(text):
-    t = str(text or '').upper()
-    t = t.replace('MASTERCARD', 'MC')
-    t = t.replace('AMERICAN EXPRESS', 'AMEX')
-    t = t.replace('AMEX', 'AMEX')
-    t = t.replace('DISCOVER', 'DSCVR').replace('DISCOVR', 'DSCVR')
-    t = t.replace('VISA', 'VI')
-    return t
-
-def _desc_tokens(desc):
-    d = _normalize_brand_token(_canon_desc(desc))
-    # keep alphanumerics and dashes/slashes as separators
-    d = re.sub(r"[^A-Z0-9\-/ ]+", " ", d)
-    d = re.sub(r"\s+", " ", d).strip()
-    tokens = set(part for part in re.split(r"[\s/]+", d) if part and part not in {"CREDIT", "DEBIT", "CARD", "US", "DB", "PP"})
-    return tokens
-
-def _best_interchange_match(fees_desc, inter_map):
-    fees_tokens = _desc_tokens(fees_desc)
-    if not fees_tokens:
-        return None, 0.0
-    best_key = None
-    best_score = 0.0
-    for key in inter_map.keys():
-        inter_tokens = _desc_tokens(key)
-        if not inter_tokens:
-            continue
-        overlap = len(fees_tokens & inter_tokens)
-        union = len(fees_tokens | inter_tokens)
-        score = overlap / union if union else 0.0
-        if score > best_score:
-            best_score = score
-            best_key = key
-    return (inter_map.get(best_key) if best_key else None), best_score
-
-# Enrich FEES rows with matching INTERCHANGE data
-direct_hits = 0
-condensed_hits = 0
-fuzzy_hits = 0
-for r in fees_rows:
-    key = _canon_desc(r.get('Statement Description'))
-    mate = inter_by_desc.get(key)
-    if mate is None:
-        # Try condensed exact
-        condensed = re.sub(r"[^A-Z0-9]", "", key)
-        mate = inter_by_desc.get(condensed)
-        if mate:
-            condensed_hits += 1
-    if mate is None:
-        # Try fuzzy match when exact canonical match fails
-        mate, score = _best_interchange_match(key, inter_by_desc)
-        if mate and score < 0.45:
-            mate = None
-        elif mate:
-            fuzzy_hits += 1
-    else:
-        direct_hits += 1
-    if mate:
-        enriched_fields = []
-        for fld in ['Rate %', 'Rate $', 'Count #', 'Amount $']:
-            inter_val = mate.get(fld)
-            inter_val_str = str(inter_val).strip() if inter_val is not None else ""
-            if inter_val_str:
-                r[fld] = inter_val
-                enriched_fields.append(f"{fld}='{inter_val_str}'")
-        
-        # Debug: show what we're copying
-        if len(enriched_fields) == 0:
-            print(f"   ⚠️ MATCHED but NO ENRICHMENT: FEES='{r.get('Statement Description', '')[:30]}' | INTER fields: Rate %='{mate.get('Rate %', '')}', Rate $='{mate.get('Rate $', '')}', Count #='{mate.get('Count #', '')}', Amount $='{mate.get('Amount $', '')}'")
-        else:
-            print(f"   ✅ ENRICHED: FEES='{r.get('Statement Description', '')[:30]}' | {' | '.join(enriched_fields)}")
-
-print(f"   🔎 Enrichment matches → direct: {direct_hits}, condensed: {condensed_hits}, fuzzy: {fuzzy_hits}")
-
-# Post-process: clean descriptions, selective fee-type update for INTERCHANGE-like lines, and flip fee signs
-print("🔄 Post-processing descriptions, fee types, and fee signs...")
-
-import re as _pp_re
-
-def _looks_like_assessment_line(text: str) -> bool:
-    t = str(text or '').upper()
-    # Check for FEE in description (for cleaned descriptions) OR original patterns
-    has_fee_keyword = "FEE" in t
-    has_assessment_keyword = any(tok in t for tok in ["ASSESSMENT", "ASSESSMNT", "ASSESS"])
-    has_pattern = (
-        (" TIMES $" in t) or  # With leading space
-        ("TIMES $" in t) or   # Without leading space
-        (" AT ." in t) or
-        (" X TRNS $" in t) or
-        bool(_pp_re.search(r"\$[0-9,]+\.?[0-9]*\s+AT\s+\.?[0-9]+", t)) or
-        bool(_pp_re.search(r"\$[0-9,]+\.?[0-9]*\s+TIMES\s+", t)) or  # More flexible TIMES pattern
-        bool(_pp_re.search(r"TIMES\s+\$[0-9,]+\.?[0-9]*", t))  # TIMES followed by amount
-    )
-    # Either has original patterns OR has FEE keyword (for cleaned descriptions)
-    return (has_assessment_keyword and has_pattern) or (has_fee_keyword and has_assessment_keyword)
-
-# Apply post-processing to ALL rows (FEES + INTERCHANGE + SUMMARY_CARD)
-all_rows = fees_rows + interchange_rows + summary_card_rows
-
-for r in all_rows:
-    desc = r.get('Statement Description', '')
-    fee_type = str(r.get('Fee Type', '') or '').upper().strip()
-
-    if desc:
-        # Debug: Check if this is an assessment line
-        is_assessment = _looks_like_assessment_line(desc)
-        # Special debug for VISA assessment lines
-        if "VISA ASSESSMENT" in desc:
-            print(f"   🎯 VISA ASSESSMENT FOUND: '{desc}' | Fee Type: '{fee_type}' | Is Assessment: {is_assessment}")
-            # Check if this row has original description in other fields
-            print(f"   🔍 Full row data: {r}")
-        print(f"   🔍 Checking: '{desc[:50]}...' | Fee Type: '{fee_type}' | Is Assessment: {is_assessment}")
-        
-        # Clean only when it looks like the special assessment-style line
-        if is_assessment:
-            cleaned_desc = clean_description_with_amounts(desc)
-            if cleaned_desc != desc:
-                print(f"   🧹 Cleaned: '{desc[:50]}...' → '{cleaned_desc}'")
-                r['Statement Description'] = cleaned_desc
-            # Reclassify ONLY if it was coming from INTERCHANGE charges (not if already Fees)
-            if fee_type == 'INTERCHANGE CHARGES':
-                r['Fee Type'] = 'Fees'
-                print(f"   🔄 Reclassified Fee Type from 'Interchange Charges' to 'Fees' for assessment-style line")
-            elif fee_type == 'FEES':
-                print(f"   ✅ Fee Type already 'Fees' - no change needed")
-            else:
-                print(f"   ⚠️ Assessment line but Fee Type is '{fee_type}' - no change")
-
-    # Flip fee signs: positive becomes negative, negative becomes positive
-    fees_amount = r.get('Fees $', '')
-    if fees_amount and str(fees_amount).strip():
-        original_fees = fees_amount
-        flipped_fees = fix_fee_signs(fees_amount)
-        if original_fees != flipped_fees:
-            r['Fees $'] = flipped_fees
-            print(f"   🔄 Flipped Fees: {original_fees} → {flipped_fees}")
-
-# Final output: FEES rows + SUMMARY_CARD rows (exclude INTERCHANGE rows as they're only used for enrichment)
-rows = fees_rows + summary_card_rows
-print(f"   ✅ Final row count (FEES + SUMMARY_CARD): {len(rows)}")
-
-output_excel = os.path.join("output_excels", f"{os.path.splitext(os.path.basename(file_name))[0]}_tables.xlsx")
-save_extracted_data_to_excel(rows, output_excel)
-print(f"✅ Exported to {output_excel} ({len(rows)} rows)")
+if __name__ == "__main__":
+    main()
